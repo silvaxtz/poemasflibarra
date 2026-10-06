@@ -50,6 +50,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
+       ÍCONE PLAY
+    ========================= */
+
+    function playIcon() {
+        return `
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="play-svg"
+            >
+                <path
+                    d="M8 5L19 12L8 19Z"
+                    fill="currentColor"
+                />
+            </svg>
+        `;
+    }
+
+
+    /* =========================
+       ÍCONE PAUSE
+    ========================= */
+
+    function pauseIcon() {
+        return `
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pause-svg"
+            >
+                <path
+                    d="M7 5V19"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M17 5V19"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+            </svg>
+        `;
+    }
+
+
+    /* =========================
        ENTRAR PELO LOGO
     ========================= */
 
@@ -75,7 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.pause();
 
         player.classList.remove("open");
-        player.setAttribute("aria-hidden", "true");
+
+        player.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
         library.classList.remove("visible");
 
@@ -163,11 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             </p>
                         </div>
 
-                        <span class="poem-play">
-                            <img
-                                src="play.svg"
-                                alt="Reproduzir"
-                            >
+                        <span
+                            class="poem-play"
+                            aria-label="Reproduzir"
+                        >
+                            ${playIcon()}
                         </span>
 
                     </button>
@@ -311,19 +366,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================
-       ÍCONE DE PLAY
-    ========================= */
-
-    playPause.innerHTML = `
-        <img
-            src="play.svg"
-            alt="Reproduzir"
-            class="shared-play-icon"
-        >
-    `;
-
-
-    /* =========================
        BOTÃO PLAY / PAUSE
     ========================= */
 
@@ -340,6 +382,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Reproduzir"
             );
 
+            playPause.innerHTML =
+                playIcon();
+
         } else {
 
             playPause.classList.add(
@@ -350,6 +395,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "aria-label",
                 "Pausar"
             );
+
+            playPause.innerHTML =
+                pauseIcon();
 
         }
 
