@@ -622,19 +622,24 @@ button {
 
 
 .play-button {
-
     width: 58px;
     height: 58px;
 
-    color:
-        var(--player);
+    color: var(--player);
 
-    background:
-        var(--player-text);
+    background: var(--player-text);
 
     font-size: 20px;
 
-    padding-left: 3px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+
+    text-align: center;
 }
 
 
