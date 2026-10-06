@@ -2,223 +2,340 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-    <meta name="theme-color" content="#0e0d0c">
+    <meta
+        name="theme-color"
+        content="#11100f"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Literário"
+    >
 
     <title>Evento Literário</title>
 
-    <link rel="stylesheet" href="style.css">
-
     <link rel="manifest" href="manifest.json">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Literário">
-    
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <main class="app">
 
-        <!-- CABEÇALHO -->
-        <header class="hero">
-
-            <div class="eyebrow">
-                FLIBARRA
-            </div>
-
-            <h1>
-                Vozes que<br>
-                <em>permanecem.</em>
-            </h1>
-
-            <p>
-                Toque em uma obra para ouvir
-                a voz por trás das palavras.
-            </p>
-
-        </header>
+<main class="app">
 
 
-        <!-- LISTA DE POEMAS -->
-        <section class="poems-section">
+    <!-- =====================================
+         CABEÇALHO
+    ====================================== -->
 
-            <div class="section-heading">
+    <header class="hero">
 
-                <span>POEMAS</span>
+        <div class="eyebrow">
+            EVENTO LITERÁRIO
+        </div>
 
-                <span id="poemCount">
-                    00 obras
+
+        <h1>
+            Vozes que<br>
+            <em>permanecem.</em>
+        </h1>
+
+
+        <p>
+            Toque em uma obra para ouvir
+            a voz por trás das palavras.
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================
+         POEMAS
+    ====================================== -->
+
+    <section class="poems-section">
+
+
+        <div class="section-heading">
+
+            <span>
+                POEMAS
+            </span>
+
+            <span id="poemCount">
+                00 obras
+            </span>
+
+        </div>
+
+
+        <div
+            id="poemList"
+            class="poem-list"
+        ></div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     PLAYER
+========================================== -->
+
+<section
+    id="player"
+    class="player"
+    aria-hidden="true"
+>
+
+
+    <div class="player-inner">
+
+
+        <!-- FECHAR -->
+
+        <button
+            id="closePlayer"
+            class="icon-button close-button"
+            aria-label="Fechar player"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path d="M6 6L18 18"/>
+                <path d="M18 6L6 18"/>
+
+            </svg>
+
+        </button>
+
+
+
+        <!-- AUTOR -->
+
+        <div class="player-author">
+
+
+            <div
+                id="authorImage"
+                class="author-image"
+            >
+
+                <span id="authorInitials">
+                    ?
                 </span>
 
             </div>
 
 
-            <div id="poemList" class="poem-list">
 
-                <!-- Os poemas serão inseridos pelo JavaScript -->
+            <div class="player-info">
+
+
+                <div class="now-playing-label">
+                    OUVINDO AGORA
+                </div>
+
+
+                <h2 id="playerTitle">
+                    Selecione um poema
+                </h2>
+
+
+                <p id="playerAuthor">
+                    Autor
+                </p>
+
 
             </div>
 
-        </section>
 
-    </main>
-
+        </div>
 
 
-    <!-- ========================================= -->
-    <!-- PLAYER QUE DESLIZA DA PARTE DE BAIXO -->
-    <!-- ========================================= -->
 
-    <section id="player"
-             class="player"
-             aria-hidden="true">
+        <!-- PROGRESSO -->
 
-        <div class="player-inner">
+        <div class="progress-area">
 
 
-            <!-- FECHAR -->
+            <input
+                id="progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                aria-label="Progresso do áudio"
+            >
+
+
+            <div class="time-row">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             CONTROLES
+        ================================== -->
+
+        <div class="controls">
+
+
+            <!-- ANTERIOR -->
+
             <button
-                id="closePlayer"
-                class="icon-button close-button"
-                aria-label="Fechar player">
+                id="previous"
+                class="secondary-control"
+                aria-label="Poema anterior"
+            >
 
-                ×
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M11 18L4 12L11 6"/>
+                    <path d="M20 18L13 12L20 6"/>
+
+                </svg>
 
             </button>
 
 
 
-            <!-- AUTOR -->
-            <div class="player-author">
+            <!-- PLAY / PAUSE -->
+
+            <button
+                id="playPause"
+                class="play-button"
+                aria-label="Reproduzir"
+            >
 
 
-                <!-- FOTO DO AUTOR -->
-                <div id="authorImage"
-                     class="author-image">
+                <!-- PLAY -->
 
-                    <span id="authorInitials">
-                        ?
-                    </span>
-
-                </div>
-
-
-
-                <!-- INFORMAÇÕES -->
-                <div class="player-info">
-
-                    <div class="now-playing-label">
-                        OUVINDO AGORA
-                    </div>
-
-                    <h2 id="playerTitle">
-                        Selecione um poema
-                    </h2>
-
-                    <p id="playerAuthor">
-                        Autor
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- BARRA DE PROGRESSO -->
-            <div class="progress-area">
-
-                <input
-                    id="progress"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                    aria-label="Progresso do áudio"
+                <svg
+                    class="play-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
                 >
 
-                <div class="time-row">
+                    <path d="M8 5L19 12L8 19Z"/>
 
-                    <span id="currentTime">
-                        0:00
-                    </span>
-
-                    <span id="duration">
-                        0:00
-                    </span>
-
-                </div>
-
-            </div>
+                </svg>
 
 
 
-            <!-- CONTROLES -->
-            <div class="controls">
+                <!-- PAUSE -->
+
+                <svg
+                    class="pause-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M7 5V19"/>
+                    <path d="M17 5V19"/>
+
+                </svg>
 
 
-                <!-- ANTERIOR -->
-                <button
-                    id="previous"
-                    class="secondary-control"
-                    aria-label="Poema anterior">
-
-                    ↶
-
-                </button>
-
-
-
-                <!-- PLAY / PAUSE -->
-                <button
-                    id="playPause"
-                    class="play-button"
-                    aria-label="Reproduzir">
-
-                    ▶
-
-                </button>
+            </button>
 
 
 
-                <!-- PRÓXIMO -->
-                <button
-                    id="next"
-                    class="secondary-control"
-                    aria-label="Próximo poema">
+            <!-- PRÓXIMO -->
 
-                    ↷
+            <button
+                id="next"
+                class="secondary-control"
+                aria-label="Próximo poema"
+            >
 
-                </button>
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
 
-            </div>
+                    <path d="M13 18L20 12L13 6"/>
+                    <path d="M4 18L11 12L4 6"/>
 
+                </svg>
 
+            </button>
 
-            <!-- MENSAGEM DE ERRO -->
-            <div id="audioMessage"
-                 class="audio-message">
-            </div>
 
         </div>
 
-    </section>
+
+
+        <div
+            id="audioMessage"
+            class="audio-message"
+        ></div>
+
+
+    </div>
+
+</section>
 
 
 
-    <!-- ÁUDIO -->
-    <audio id="audio" preload="metadata"></audio>
+<audio
+    id="audio"
+    preload="metadata"
+></audio>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
+
 
 </body>
 
