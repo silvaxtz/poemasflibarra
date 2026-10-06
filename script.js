@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentIndex = -1;
 
+
     /* =========================
        ENTRAR PELO LOGO
     ========================= */
@@ -61,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             library.classList.add("visible");
         }, 180);
+
     });
+
 
     /* =========================
        VOLTAR PARA HOME
@@ -79,13 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             home.classList.remove("hidden");
         }, 180);
+
     });
+
 
     /* =========================
        CONTADOR
     ========================= */
 
-    count.textContent = String(poems.length).padStart(2, "0");
+    count.textContent =
+        String(poems.length).padStart(2, "0");
+
 
     /* =========================
        INICIAIS DO AUTOR
@@ -100,7 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .map(word => word[0])
             .join("")
             .toUpperCase();
+
     }
+
 
     /* =========================
        TEMPO
@@ -112,15 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
             return "0:00";
         }
 
-        const minutes = Math.floor(seconds / 60);
+        const minutes =
+            Math.floor(seconds / 60);
 
-        const secs = Math
-            .floor(seconds % 60)
-            .toString()
-            .padStart(2, "0");
+        const secs =
+            Math.floor(seconds % 60)
+                .toString()
+                .padStart(2, "0");
 
         return `${minutes}:${secs}`;
+
     }
+
 
     /* =========================
        LISTA DE OBRAS
@@ -128,49 +140,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderList() {
 
-        list.innerHTML = poems.map((poem, index) => {
+        list.innerHTML =
+            poems.map((poem, index) => {
 
-            return `
-                <button
-                    class="poem-card ${index === currentIndex ? "active" : ""}"
-                    data-index="${index}"
-                >
+                return `
+                    <button
+                        class="poem-card ${index === currentIndex ? "active" : ""}"
+                        data-index="${index}"
+                    >
 
-                    <div class="poem-number">
-                        ${String(index + 1).padStart(2, "0")}
-                    </div>
+                        <div class="poem-number">
+                            ${String(index + 1).padStart(2, "0")}
+                        </div>
 
-                    <div>
-                        <h2 class="poem-title">
-                            ${poem.title}
-                        </h2>
+                        <div>
+                            <h2 class="poem-title">
+                                ${poem.title}
+                            </h2>
 
-                        <p class="poem-author">
-                            ${poem.author}
-                        </p>
-                    </div>
+                            <p class="poem-author">
+                                ${poem.author}
+                            </p>
+                        </div>
 
-                    <span class="poem-play">
-                        ▶
-                    </span>
+                        <span class="poem-play">
+                            <img
+                                src="play.svg"
+                                alt="Reproduzir"
+                            >
+                        </span>
 
-                </button>
-            `;
+                    </button>
+                `;
 
-        }).join("");
+            }).join("");
 
-        list.querySelectorAll(".poem-card").forEach(card => {
 
-            card.addEventListener("click", () => {
+        list.querySelectorAll(".poem-card")
+            .forEach(card => {
 
-                const index = Number(card.dataset.index);
+                card.addEventListener(
+                    "click",
+                    () => {
 
-                selectPoem(index);
+                        const index =
+                            Number(card.dataset.index);
+
+                        selectPoem(index);
+
+                    }
+                );
 
             });
 
-        });
     }
+
 
     /* =========================
        FOTO DO AUTOR
@@ -178,11 +202,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setAuthorImage(poem) {
 
-        authorInitials.textContent = initials(poem.author);
+        authorInitials.textContent =
+            initials(poem.author);
 
-        authorInitials.style.display = "block";
+        authorInitials.style.display =
+            "block";
 
-        const oldImage = authorImage.querySelector("img");
+        const oldImage =
+            authorImage.querySelector("img");
 
         if (oldImage) {
             oldImage.remove();
@@ -192,21 +219,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         img.onload = () => {
 
-            authorInitials.style.display = "none";
+            authorInitials.style.display =
+                "none";
 
-            img.alt = `Foto de ${poem.author}`;
+            img.alt =
+                `Foto de ${poem.author}`;
 
             authorImage.appendChild(img);
+
         };
 
         img.onerror = () => {
 
-            authorInitials.style.display = "block";
+            authorInitials.style.display =
+                "block";
 
         };
 
         img.src = poem.image;
+
     }
+
 
     /* =========================
        SELECIONAR OBRA
@@ -214,7 +247,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function selectPoem(index) {
 
-        if (index < 0 || index >= poems.length) {
+        if (
+            index < 0 ||
+            index >= poems.length
+        ) {
             return;
         }
 
@@ -222,8 +258,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const poem = poems[index];
 
-        playerTitle.textContent = poem.title;
-        playerAuthor.textContent = poem.author;
+        playerTitle.textContent =
+            poem.title;
+
+        playerAuthor.textContent =
+            poem.author;
 
         setAuthorImage(poem);
 
@@ -235,14 +274,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         progress.value = 0;
 
-        currentTime.textContent = "0:00";
-        duration.textContent = "0:00";
+        currentTime.textContent =
+            "0:00";
 
-        audioMessage.textContent = "";
+        duration.textContent =
+            "0:00";
+
+        audioMessage.textContent =
+            "";
 
         player.classList.add("open");
 
-        player.setAttribute("aria-hidden", "false");
+        player.setAttribute(
+            "aria-hidden",
+            "false"
+        );
 
         renderList();
 
@@ -258,8 +304,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 audioMessage.textContent =
                     "Áudio não encontrado. Adicione o arquivo desta obra.";
+
             });
+
     }
+
+
+    /* =========================
+       ÍCONE DE PLAY
+    ========================= */
+
+    playPause.innerHTML = `
+        <img
+            src="play.svg"
+            alt="Reproduzir"
+            class="shared-play-icon"
+        >
+    `;
+
 
     /* =========================
        BOTÃO PLAY / PAUSE
@@ -269,7 +331,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (audio.paused) {
 
-            playPause.classList.remove("is-playing");
+            playPause.classList.remove(
+                "is-playing"
+            );
 
             playPause.setAttribute(
                 "aria-label",
@@ -278,42 +342,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else {
 
-            playPause.classList.add("is-playing");
+            playPause.classList.add(
+                "is-playing"
+            );
 
             playPause.setAttribute(
                 "aria-label",
                 "Pausar"
             );
+
         }
+
     }
 
-    playPause.addEventListener("click", async () => {
 
-        if (currentIndex < 0) {
-            return;
-        }
+    playPause.addEventListener(
+        "click",
+        async () => {
 
-        if (audio.paused) {
-
-            try {
-
-                await audio.play();
-
-                audioMessage.textContent = "";
-
-            } catch {
-
-                audioMessage.textContent =
-                    "Áudio não encontrado.";
+            if (currentIndex < 0) {
+                return;
             }
 
-        } else {
+            if (audio.paused) {
 
-            audio.pause();
+                try {
+
+                    await audio.play();
+
+                    audioMessage.textContent =
+                        "";
+
+                } catch {
+
+                    audioMessage.textContent =
+                        "Áudio não encontrado.";
+
+                }
+
+            } else {
+
+                audio.pause();
+
+            }
+
+            updatePlayButton();
+
         }
+    );
 
-        updatePlayButton();
-    });
 
     /* =========================
        FECHAR PLAYER
@@ -321,17 +398,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document
         .getElementById("closePlayer")
-        .addEventListener("click", () => {
+        .addEventListener(
+            "click",
+            () => {
 
-            audio.pause();
+                audio.pause();
 
-            player.classList.remove("open");
+                player.classList.remove(
+                    "open"
+                );
 
-            player.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-        });
+                player.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+            }
+        );
+
 
     /* =========================
        OBRA ANTERIOR
@@ -339,18 +423,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document
         .getElementById("previous")
-        .addEventListener("click", () => {
+        .addEventListener(
+            "click",
+            () => {
 
-            if (!poems.length) {
-                return;
+                if (!poems.length) {
+                    return;
+                }
+
+                const index =
+                    (
+                        currentIndex -
+                        1 +
+                        poems.length
+                    ) %
+                    poems.length;
+
+                selectPoem(index);
+
             }
+        );
 
-            const index =
-                (currentIndex - 1 + poems.length) %
-                poems.length;
-
-            selectPoem(index);
-        });
 
     /* =========================
        PRÓXIMA OBRA
@@ -358,18 +451,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document
         .getElementById("next")
-        .addEventListener("click", () => {
+        .addEventListener(
+            "click",
+            () => {
 
-            if (!poems.length) {
-                return;
+                if (!poems.length) {
+                    return;
+                }
+
+                const index =
+                    (
+                        currentIndex +
+                        1
+                    ) %
+                    poems.length;
+
+                selectPoem(index);
+
             }
+        );
 
-            const index =
-                (currentIndex + 1) %
-                poems.length;
-
-            selectPoem(index);
-        });
 
     /* =========================
        ÁUDIO
@@ -381,8 +482,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             duration.textContent =
                 formatTime(audio.duration);
+
         }
     );
+
 
     audio.addEventListener(
         "timeupdate",
@@ -391,24 +494,33 @@ document.addEventListener("DOMContentLoaded", () => {
             if (audio.duration) {
 
                 progress.value =
-                    (audio.currentTime /
-                        audio.duration) * 100;
+                    (
+                        audio.currentTime /
+                        audio.duration
+                    ) * 100;
+
             }
 
             currentTime.textContent =
-                formatTime(audio.currentTime);
+                formatTime(
+                    audio.currentTime
+                );
+
         }
     );
+
 
     audio.addEventListener(
         "play",
         updatePlayButton
     );
 
+
     audio.addEventListener(
         "pause",
         updatePlayButton
     );
+
 
     audio.addEventListener(
         "ended",
@@ -424,9 +536,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectPoem(
                     currentIndex + 1
                 );
+
             }
+
         }
     );
+
 
     progress.addEventListener(
         "input",
@@ -435,17 +550,25 @@ document.addEventListener("DOMContentLoaded", () => {
             if (audio.duration) {
 
                 audio.currentTime =
-                    (Number(progress.value) / 100) *
+                    (
+                        Number(
+                            progress.value
+                        ) / 100
+                    ) *
                     audio.duration;
+
             }
+
         }
     );
+
 
     /* =========================
        INICIA A LISTA
     ========================= */
 
     renderList();
+
 
     /* =========================
        SERVICE WORKER
@@ -458,20 +581,28 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 navigator.serviceWorker
-                    .register("./service-worker.js")
+                    .register(
+                        "./service-worker.js"
+                    )
                     .then(() => {
+
                         console.log(
                             "Service Worker ativo"
                         );
+
                     })
                     .catch(error => {
+
                         console.error(
                             "Erro no Service Worker:",
                             error
                         );
+
                     });
+
             }
         );
+
     }
 
 });
