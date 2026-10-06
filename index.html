@@ -12,7 +12,7 @@
 
     <meta
         name="theme-color"
-        content="#11100f"
+        content="#181a1d"
     >
 
     <meta
@@ -27,19 +27,27 @@
 
     <meta
         name="apple-mobile-web-app-status-bar-style"
-        content="black"
+        content="black-translucent"
     >
 
     <meta
         name="apple-mobile-web-app-title"
-        content="Literário"
+        content="FLIBARRA"
     >
 
-    <title>FLIBARRA</title>
+    <title>FLIBARRA 2026</title>
 
-    <link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -47,294 +55,425 @@
 <body>
 
 
-<main class="app">
+    <!-- =========================================
+         TELA INICIAL
+    ========================================== -->
+
+    <main
+        id="home"
+        class="home-screen"
+    >
 
 
-    <!-- =====================================
-         CABEÇALHO
-    ====================================== -->
+        <!-- Fundo -->
 
-    <header class="hero">
-
-        <div class="eyebrow">
-            FLIBARRA 2026
-        </div>
-
-
-        <h1>
-            Vozes que<br>
-            <em>permanecem.</em>
-        </h1>
-
-
-        <p>
-            Toque em uma obra para ouvir
-            a voz por trás das palavras.
-        </p>
-
-    </header>
-
-
-
-    <!-- =====================================
-         POEMAS
-    ====================================== -->
-
-    <section class="poems-section">
-
-
-        <div class="section-heading">
-
-            <span>
-                POEMAS
-            </span>
-
-            <span id="poemCount">
-                00 obras
-            </span>
-
-        </div>
+        <div
+            class="background-blur"
+            aria-hidden="true"
+        ></div>
 
 
         <div
-            id="poemList"
-            class="poem-list"
+            class="background-overlay"
+            aria-hidden="true"
         ></div>
+
+
+
+        <!-- Conteúdo principal -->
+
+        <div class="home-content">
+
+
+            <div class="festival-label">
+
+                EXPERIÊNCIA LITERÁRIA
+
+            </div>
+
+
+
+            <!-- LOGO -->
+
+            <button
+                id="enterButton"
+                class="logo-button"
+                aria-label="Entrar no FLIBARRA"
+            >
+
+                <img
+                    src="flibarra-logo.png"
+                    alt="FLIBARRA — Festival Literário de Barra de São Miguel 2026"
+                    class="flibarra-logo"
+                >
+
+            </button>
+
+
+
+            <!-- Indicação de toque -->
+
+            <div class="touch-hint">
+
+
+                <span class="touch-icon">
+
+                    <span></span>
+
+                </span>
+
+
+                <span>
+                    Toque para entrar
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         BIBLIOTECA / POEMAS
+    ========================================== -->
+
+    <main
+        id="library"
+        class="library-screen"
+    >
+
+
+        <header class="library-header">
+
+
+            <!-- VOLTAR -->
+
+            <button
+                id="backHome"
+                class="back-button"
+                aria-label="Voltar"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M15 18L9 12L15 6"/>
+
+                </svg>
+
+            </button>
+
+
+
+            <!-- TÍTULO -->
+
+            <div>
+
+                <span class="library-kicker">
+
+                    FLIBARRA 2026
+
+                </span>
+
+
+                <h1>
+
+                    Vozes &amp; palavras
+
+                </h1>
+
+            </div>
+
+
+
+            <!-- CONTADOR -->
+
+            <span
+                id="poemCount"
+                class="library-count"
+            >
+
+                00
+
+            </span>
+
+
+        </header>
+
+
+
+        <!-- LISTA -->
+
+        <section class="poems-section">
+
+
+            <div
+                id="poemList"
+                class="poem-list"
+            ></div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         PLAYER
+    ========================================== -->
+
+    <section
+        id="player"
+        class="player"
+        aria-hidden="true"
+    >
+
+
+        <div class="player-inner">
+
+
+            <!-- FECHAR -->
+
+            <button
+                id="closePlayer"
+                class="icon-button close-button"
+                aria-label="Fechar player"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M6 6L18 18"/>
+
+                    <path d="M18 6L6 18"/>
+
+                </svg>
+
+            </button>
+
+
+
+            <!-- AUTOR -->
+
+            <div class="player-author">
+
+
+                <div
+                    id="authorImage"
+                    class="author-image"
+                >
+
+                    <span id="authorInitials">
+                        ?
+                    </span>
+
+                </div>
+
+
+
+                <div class="player-info">
+
+
+                    <div class="now-playing-label">
+
+                        OUVINDO AGORA
+
+                    </div>
+
+
+                    <h2 id="playerTitle">
+
+                        Selecione uma obra
+
+                    </h2>
+
+
+                    <p id="playerAuthor">
+
+                        Autor
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PROGRESSO -->
+
+            <div class="progress-area">
+
+
+                <input
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                    aria-label="Progresso do áudio"
+                >
+
+
+
+                <div class="time-row">
+
+
+                    <span id="currentTime">
+
+                        0:00
+
+                    </span>
+
+
+                    <span id="duration">
+
+                        0:00
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CONTROLES -->
+
+            <div class="controls">
+
+
+                <!-- ANTERIOR -->
+
+                <button
+                    id="previous"
+                    class="secondary-control"
+                    aria-label="Obra anterior"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M11 18L4 12L11 6"/>
+
+                        <path d="M20 18L13 12L20 6"/>
+
+                    </svg>
+
+                </button>
+
+
+
+                <!-- PLAY / PAUSE -->
+
+                <button
+                    id="playPause"
+                    class="play-button"
+                    aria-label="Reproduzir"
+                >
+
+
+                    <svg
+                        class="play-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M8 5L19 12L8 19Z"/>
+
+                    </svg>
+
+
+
+                    <svg
+                        class="pause-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M7 5V19"/>
+
+                        <path d="M17 5V19"/>
+
+                    </svg>
+
+
+                </button>
+
+
+
+                <!-- PRÓXIMO -->
+
+                <button
+                    id="next"
+                    class="secondary-control"
+                    aria-label="Próxima obra"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path d="M13 18L20 12L13 6"/>
+
+                        <path d="M4 18L11 12L4 6"/>
+
+                    </svg>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- MENSAGEM -->
+
+            <div
+                id="audioMessage"
+                class="audio-message"
+            ></div>
+
+
+        </div>
 
 
     </section>
 
 
-</main>
 
+    <!-- =========================================
+         ÁUDIO
+    ========================================== -->
 
+    <audio
+        id="audio"
+        preload="metadata"
+    ></audio>
 
-<!-- =========================================
-     PLAYER
-========================================== -->
 
-<section
-    id="player"
-    class="player"
-    aria-hidden="true"
->
 
+    <!-- JAVASCRIPT -->
 
-    <div class="player-inner">
-
-
-        <!-- FECHAR -->
-
-        <button
-            id="closePlayer"
-            class="icon-button close-button"
-            aria-label="Fechar player"
-        >
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
-
-                <path d="M6 6L18 18"/>
-                <path d="M18 6L6 18"/>
-
-            </svg>
-
-        </button>
-
-
-
-        <!-- AUTOR -->
-
-        <div class="player-author">
-
-
-            <div
-                id="authorImage"
-                class="author-image"
-            >
-
-                <span id="authorInitials">
-                    ?
-                </span>
-
-            </div>
-
-
-
-            <div class="player-info">
-
-
-                <div class="now-playing-label">
-                    OUVINDO AGORA
-                </div>
-
-
-                <h2 id="playerTitle">
-                    Selecione um poema
-                </h2>
-
-
-                <p id="playerAuthor">
-                    Autor
-                </p>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- PROGRESSO -->
-
-        <div class="progress-area">
-
-
-            <input
-                id="progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                aria-label="Progresso do áudio"
-            >
-
-
-            <div class="time-row">
-
-                <span id="currentTime">
-                    0:00
-                </span>
-
-                <span id="duration">
-                    0:00
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================
-             CONTROLES
-        ================================== -->
-
-        <div class="controls">
-
-
-            <!-- ANTERIOR -->
-
-            <button
-                id="previous"
-                class="secondary-control"
-                aria-label="Poema anterior"
-            >
-
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-
-                    <path d="M11 18L4 12L11 6"/>
-                    <path d="M20 18L13 12L20 6"/>
-
-                </svg>
-
-            </button>
-
-
-
-            <!-- PLAY / PAUSE -->
-
-            <button
-                id="playPause"
-                class="play-button"
-                aria-label="Reproduzir"
-            >
-
-
-                <!-- PLAY -->
-
-                <svg
-                    class="play-icon"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-
-                    <path d="M8 5L19 12L8 19Z"/>
-
-                </svg>
-
-
-
-                <!-- PAUSE -->
-
-                <svg
-                    class="pause-icon"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-
-                    <path d="M7 5V19"/>
-                    <path d="M17 5V19"/>
-
-                </svg>
-
-
-            </button>
-
-
-
-            <!-- PRÓXIMO -->
-
-            <button
-                id="next"
-                class="secondary-control"
-                aria-label="Próximo poema"
-            >
-
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-
-                    <path d="M13 18L20 12L13 6"/>
-                    <path d="M4 18L11 12L4 6"/>
-
-                </svg>
-
-            </button>
-
-
-        </div>
-
-
-
-        <div
-            id="audioMessage"
-            class="audio-message"
-        ></div>
-
-
-    </div>
-
-</section>
-
-
-
-<audio
-    id="audio"
-    preload="metadata"
-></audio>
-
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 
 </body>
