@@ -3,19 +3,19 @@ const poems = [
         title: "Poema de exemplo",
         author: "Autor do evento",
         image: "assets/autores/autor-01.jpg",
-        audio: "assets/audios/poema-01.mp3"
+        audio: "audio1.mp3"
     },
     {
         title: "Outra voz",
         author: "Autora do evento",
         image: "assets/autores/autor-02.jpg",
-        audio: "assets/audios/poema-02.mp3"
+        audio: "audio2.mp3"
     },
     {
         title: "Palavras ao vento",
         author: "Autor do evento",
         image: "assets/autores/autor-03.jpg",
-        audio: "assets/audios/poema-03.mp3"
+        audio: "audio3.mp3"
     }
 ];
 
