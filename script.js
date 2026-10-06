@@ -1,6 +1,12 @@
-/* =========================================
-   POEMAS
-========================================= */
+/* =========================================================
+   FLIBARRA 2026
+   CONTROLE DA EXPERIÊNCIA
+========================================================= */
+
+
+/* =========================================================
+   OBRAS
+========================================================= */
 
 const poems = [
 
@@ -28,9 +34,21 @@ const poems = [
 ];
 
 
-/* =========================================
+/* =========================================================
    ELEMENTOS
-========================================= */
+========================================================= */
+
+const home =
+    document.getElementById("home");
+
+const library =
+    document.getElementById("library");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+const backHome =
+    document.getElementById("backHome");
 
 const list =
     document.getElementById("poemList");
@@ -75,149 +93,266 @@ const audioMessage =
 let currentIndex = -1;
 
 
-/* =========================================
+/* =========================================================
    CONTADOR
-========================================= */
+========================================================= */
 
 count.textContent =
-    `${String(poems.length).padStart(2, "0")} obras`;
+    String(poems.length).padStart(2, "0");
 
 
-/* =========================================
-   INICIAIS
-========================================= */
+/* =========================================================
+   ENTRAR NO FLIBARRA
+========================================================= */
+
+enterButton.addEventListener(
+    "click",
+    () => {
+
+        home.classList.add(
+            "hidden"
+        );
+
+
+        setTimeout(
+            () => {
+
+                library.classList.add(
+                    "visible"
+                );
+
+            },
+            180
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VOLTAR PARA A HOME
+========================================================= */
+
+backHome.addEventListener(
+    "click",
+    () => {
+
+        audio.pause();
+
+
+        player.classList.remove(
+            "open"
+        );
+
+
+        player.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        library.classList.remove(
+            "visible"
+        );
+
+
+        setTimeout(
+            () => {
+
+                home.classList.remove(
+                    "hidden"
+                );
+
+            },
+            180
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INICIAIS DO AUTOR
+========================================================= */
 
 function initials(name) {
 
     return name
+
         .split(" ")
+
         .filter(Boolean)
+
         .slice(0, 2)
-        .map(word => word[0])
+
+        .map(
+            word =>
+                word[0]
+        )
+
         .join("")
+
         .toUpperCase();
 
 }
 
 
-/* =========================================
-   TEMPO
-========================================= */
+/* =========================================================
+   FORMATAÇÃO DO TEMPO
+========================================================= */
 
 function formatTime(seconds) {
 
-    if (!Number.isFinite(seconds)) {
+    if (
+        !Number.isFinite(seconds)
+    ) {
 
         return "0:00";
 
     }
 
+
     const minutes =
-        Math.floor(seconds / 60);
+        Math.floor(
+            seconds / 60
+        );
+
 
     const secondsFormatted =
-        Math.floor(seconds % 60)
-            .toString()
-            .padStart(2, "0");
+        Math.floor(
+            seconds % 60
+        )
+        .toString()
+        .padStart(2, "0");
+
 
     return `${minutes}:${secondsFormatted}`;
 
 }
 
 
-/* =========================================
-   LISTA DE POEMAS
-========================================= */
+/* =========================================================
+   RENDERIZAR OBRAS
+========================================================= */
 
 function renderList() {
 
     list.innerHTML =
-        poems.map((poem, index) => `
 
-            <button
-                class="poem-card ${
-                    index === currentIndex
-                        ? "active"
-                        : ""
-                }"
-                data-index="${index}"
-            >
+        poems
 
-                <div class="poem-number">
+            .map(
+                (poem, index) => `
 
-                    ${String(index + 1).padStart(2, "0")}
+                    <button
+                        class="poem-card ${
+                            index === currentIndex
+                                ? "active"
+                                : ""
+                        }"
+                        data-index="${index}"
+                    >
 
-                </div>
+                        <div
+                            class="poem-number"
+                        >
 
+                            ${String(index + 1).padStart(2, "0")}
 
-                <div>
-
-                    <h2 class="poem-title">
-
-                        ${poem.title}
-
-                    </h2>
+                        </div>
 
 
-                    <p class="poem-author">
+                        <div>
 
-                        ${poem.author}
+                            <h2
+                                class="poem-title"
+                            >
 
-                    </p>
+                                ${poem.title}
 
-                </div>
+                            </h2>
 
 
-                <span class="poem-play">
+                            <p
+                                class="poem-author"
+                            >
 
-                    ▶
+                                ${poem.author}
 
-                </span>
+                            </p>
 
-            </button>
+                        </div>
 
-        `)
-        .join("");
+
+                        <span
+                            class="poem-play"
+                        >
+
+                            ▶
+
+                        </span>
+
+                    </button>
+
+                `
+            )
+
+            .join("");
 
 
     list
-        .querySelectorAll(".poem-card")
-        .forEach(card => {
+        .querySelectorAll(
+            ".poem-card"
+        )
+        .forEach(
+            card => {
 
-            card.addEventListener(
-                "click",
-                () => {
+                card.addEventListener(
+                    "click",
+                    () => {
 
-                    selectPoem(
-                        Number(
-                            card.dataset.index
-                        )
-                    );
+                        selectPoem(
+                            Number(
+                                card.dataset.index
+                            )
+                        );
 
-                }
-            );
+                    }
+                );
 
-        });
+            }
+        );
 
 }
 
 
-/* =========================================
+/* =========================================================
    FOTO DO AUTOR
-========================================= */
+========================================================= */
 
 function setAuthorImage(poem) {
 
     authorInitials.textContent =
-        initials(poem.author);
+        initials(
+            poem.author
+        );
+
 
     authorInitials.style.display =
         "block";
 
 
-    authorImage
-        .querySelector("img")
-        ?.remove();
+    const oldImage =
+        authorImage.querySelector(
+            "img"
+        );
+
+
+    if (oldImage) {
+
+        oldImage.remove();
+
+    }
 
 
     const img =
@@ -229,10 +364,14 @@ function setAuthorImage(poem) {
         authorInitials.style.display =
             "none";
 
+
         img.alt =
             `Foto de ${poem.author}`;
 
-        authorImage.appendChild(img);
+
+        authorImage.appendChild(
+            img
+        );
 
     };
 
@@ -251,11 +390,21 @@ function setAuthorImage(poem) {
 }
 
 
-/* =========================================
-   SELECIONAR POEMA
-========================================= */
+/* =========================================================
+   SELECIONAR OBRA
+========================================================= */
 
 function selectPoem(index) {
+
+    if (
+        index < 0 ||
+        index >= poems.length
+    ) {
+
+        return;
+
+    }
+
 
     currentIndex =
         index;
@@ -273,10 +422,13 @@ function selectPoem(index) {
         poem.author;
 
 
-    setAuthorImage(poem);
+    setAuthorImage(
+        poem
+    );
 
 
     audio.pause();
+
 
     audio.currentTime =
         0;
@@ -321,30 +473,37 @@ function selectPoem(index) {
 
     audio
         .play()
-        .then(() => {
+        .then(
+            () => {
 
-            updatePlayButton();
+                updatePlayButton();
 
-        })
-        .catch(() => {
+            }
+        )
+        .catch(
+            () => {
 
-            updatePlayButton();
+                updatePlayButton();
 
-            audioMessage.textContent =
-                "Adicione o arquivo de áudio para reproduzir esta obra.";
 
-        });
+                audioMessage.textContent =
+                    "Áudio não encontrado. Adicione o arquivo desta obra.";
+
+            }
+        );
 
 }
 
 
-/* =========================================
-   PLAY / PAUSE
-========================================= */
+/* =========================================================
+   ATUALIZAR BOTÃO PLAY / PAUSE
+========================================================= */
 
 function updatePlayButton() {
 
-    if (audio.paused) {
+    if (
+        audio.paused
+    ) {
 
         playPause.classList.remove(
             "is-playing"
@@ -375,26 +534,31 @@ function updatePlayButton() {
 }
 
 
-/* =========================================
-   CLIQUE PLAY
-========================================= */
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
 
 playPause.addEventListener(
     "click",
     async () => {
 
-        if (currentIndex < 0) {
+        if (
+            currentIndex < 0
+        ) {
 
             return;
 
         }
 
 
-        if (audio.paused) {
+        if (
+            audio.paused
+        ) {
 
             try {
 
                 await audio.play();
+
 
                 audioMessage.textContent =
                     "";
@@ -423,12 +587,14 @@ playPause.addEventListener(
 );
 
 
-/* =========================================
+/* =========================================================
    FECHAR PLAYER
-========================================= */
+========================================================= */
 
 document
-    .getElementById("closePlayer")
+    .getElementById(
+        "closePlayer"
+    )
     .addEventListener(
         "click",
         () => {
@@ -450,17 +616,21 @@ document
     );
 
 
-/* =========================================
-   ANTERIOR
-========================================= */
+/* =========================================================
+   OBRA ANTERIOR
+========================================================= */
 
 document
-    .getElementById("previous")
+    .getElementById(
+        "previous"
+    )
     .addEventListener(
         "click",
         () => {
 
-            if (!poems.length) {
+            if (
+                !poems.length
+            ) {
 
                 return;
 
@@ -468,6 +638,7 @@ document
 
 
             const index =
+
                 (
                     currentIndex -
                     1 +
@@ -477,23 +648,29 @@ document
                 poems.length;
 
 
-            selectPoem(index);
+            selectPoem(
+                index
+            );
 
         }
     );
 
 
-/* =========================================
-   PRÓXIMO
-========================================= */
+/* =========================================================
+   PRÓXIMA OBRA
+========================================================= */
 
 document
-    .getElementById("next")
+    .getElementById(
+        "next"
+    )
     .addEventListener(
         "click",
         () => {
 
-            if (!poems.length) {
+            if (
+                !poems.length
+            ) {
 
                 return;
 
@@ -501,6 +678,7 @@ document
 
 
             const index =
+
                 (
                     currentIndex +
                     1
@@ -509,15 +687,17 @@ document
                 poems.length;
 
 
-            selectPoem(index);
+            selectPoem(
+                index
+            );
 
         }
     );
 
 
-/* =========================================
+/* =========================================================
    METADADOS DO ÁUDIO
-========================================= */
+========================================================= */
 
 audio.addEventListener(
     "loadedmetadata",
@@ -532,17 +712,20 @@ audio.addEventListener(
 );
 
 
-/* =========================================
-   TEMPO DO ÁUDIO
-========================================= */
+/* =========================================================
+   ATUALIZAÇÃO DO PROGRESSO
+========================================================= */
 
 audio.addEventListener(
     "timeupdate",
     () => {
 
-        if (audio.duration) {
+        if (
+            audio.duration
+        ) {
 
             progress.value =
+
                 (
                     audio.currentTime /
                     audio.duration
@@ -561,9 +744,9 @@ audio.addEventListener(
 );
 
 
-/* =========================================
-   PLAY
-========================================= */
+/* =========================================================
+   EVENTOS PLAY / PAUSE
+========================================================= */
 
 audio.addEventListener(
     "play",
@@ -571,19 +754,15 @@ audio.addEventListener(
 );
 
 
-/* =========================================
-   PAUSE
-========================================= */
-
 audio.addEventListener(
     "pause",
     updatePlayButton
 );
 
 
-/* =========================================
-   FINAL DO POEMA
-========================================= */
+/* =========================================================
+   QUANDO TERMINAR
+========================================================= */
 
 audio.addEventListener(
     "ended",
@@ -607,17 +786,20 @@ audio.addEventListener(
 );
 
 
-/* =========================================
-   BARRA DE PROGRESSO
-========================================= */
+/* =========================================================
+   ARRASTAR A BARRA
+========================================================= */
 
 progress.addEventListener(
     "input",
     () => {
 
-        if (audio.duration) {
+        if (
+            audio.duration
+        ) {
 
             audio.currentTime =
+
                 (
                     Number(
                         progress.value
@@ -634,35 +816,41 @@ progress.addEventListener(
 );
 
 
-/* =========================================
-   INICIAR
-========================================= */
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
 renderList();
 
 
-/* =========================================
+/* =========================================================
    SERVICE WORKER
-========================================= */
+========================================================= */
 
-if ("serviceWorker" in navigator) {
+if (
+    "serviceWorker" in navigator
+) {
 
     window.addEventListener(
         "load",
         () => {
 
             navigator.serviceWorker
+
                 .register(
                     "./service-worker.js"
                 )
-                .catch(error => {
 
-                    console.error(
-                        "Erro no aplicativo:",
-                        error
-                    );
+                .catch(
+                    error => {
 
-                });
+                        console.error(
+                            "Erro no aplicativo:",
+                            error
+                        );
+
+                    }
+                );
 
         }
     );
