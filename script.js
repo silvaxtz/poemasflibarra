@@ -7,38 +7,29 @@ const poems = [
     {
         title: "Poema de exemplo",
         author: "Autor do evento",
-
         image: "assets/autores/autor-01.jpg",
-
         audio: "assets/audios/poema-01.mp3"
     },
-
 
     {
         title: "Outra voz",
         author: "Autora do evento",
-
         image: "assets/autores/autor-02.jpg",
-
         audio: "assets/audios/poema-02.mp3"
     },
-
 
     {
         title: "Palavras ao vento",
         author: "Autor do evento",
-
         image: "assets/autores/autor-03.jpg",
-
         audio: "assets/audios/poema-03.mp3"
     }
 
 ];
 
 
-
 /* =========================================
-   ELEMENTOS DA PÁGINA
+   ELEMENTOS
 ========================================= */
 
 const list =
@@ -81,26 +72,19 @@ const audioMessage =
     document.getElementById("audioMessage");
 
 
-
-/* =========================================
-   CONTROLE DO POEMA ATUAL
-========================================= */
-
 let currentIndex = -1;
 
 
-
 /* =========================================
-   CONTADOR DE POEMAS
+   CONTADOR
 ========================================= */
 
 count.textContent =
     `${String(poems.length).padStart(2, "0")} obras`;
 
 
-
 /* =========================================
-   PEGAR INICIAIS DO AUTOR
+   INICIAIS
 ========================================= */
 
 function initials(name) {
@@ -116,9 +100,8 @@ function initials(name) {
 }
 
 
-
 /* =========================================
-   FORMATO DO TEMPO
+   TEMPO
 ========================================= */
 
 function formatTime(seconds) {
@@ -142,61 +125,60 @@ function formatTime(seconds) {
 }
 
 
-
 /* =========================================
-   MOSTRAR OS POEMAS
+   LISTA DE POEMAS
 ========================================= */
 
 function renderList() {
 
-    list.innerHTML = poems.map(
-        (poem, index) => `
+    list.innerHTML =
+        poems.map((poem, index) => `
 
-        <button
-            class="poem-card ${index === currentIndex ? "active" : ""}"
-            data-index="${index}"
-        >
+            <button
+                class="poem-card ${
+                    index === currentIndex
+                        ? "active"
+                        : ""
+                }"
+                data-index="${index}"
+            >
 
-            <div class="poem-number">
+                <div class="poem-number">
 
-                ${String(index + 1).padStart(2, "0")}
+                    ${String(index + 1).padStart(2, "0")}
 
-            </div>
-
-
-            <div>
-
-                <h2 class="poem-title">
-
-                    ${poem.title}
-
-                </h2>
+                </div>
 
 
-                <p class="poem-author">
+                <div>
 
-                    ${poem.author}
+                    <h2 class="poem-title">
 
-                </p>
+                        ${poem.title}
 
-            </div>
-
-
-            <span class="poem-play">
-
-                ▶
-
-            </span>
-
-        </button>
-
-    `
-    ).join("");
+                    </h2>
 
 
-    /*
-        Quando clicar em qualquer poema
-    */
+                    <p class="poem-author">
+
+                        ${poem.author}
+
+                    </p>
+
+                </div>
+
+
+                <span class="poem-play">
+
+                    ▶
+
+                </span>
+
+            </button>
+
+        `)
+        .join("");
+
 
     list
         .querySelectorAll(".poem-card")
@@ -207,7 +189,9 @@ function renderList() {
                 () => {
 
                     selectPoem(
-                        Number(card.dataset.index)
+                        Number(
+                            card.dataset.index
+                        )
                     );
 
                 }
@@ -218,17 +202,11 @@ function renderList() {
 }
 
 
-
 /* =========================================
    FOTO DO AUTOR
 ========================================= */
 
 function setAuthorImage(poem) {
-
-    /*
-        Mostra inicialmente
-        as iniciais do autor
-    */
 
     authorInitials.textContent =
         initials(poem.author);
@@ -237,18 +215,10 @@ function setAuthorImage(poem) {
         "block";
 
 
-    /*
-        Remove foto anterior
-    */
-
     authorImage
         .querySelector("img")
         ?.remove();
 
-
-    /*
-        Tenta carregar a nova foto
-    */
 
     const img =
         new Image();
@@ -281,7 +251,6 @@ function setAuthorImage(poem) {
 }
 
 
-
 /* =========================================
    SELECIONAR POEMA
 ========================================= */
@@ -296,27 +265,16 @@ function selectPoem(index) {
         poems[index];
 
 
-    /*
-        Atualiza informações
-    */
-
     playerTitle.textContent =
         poem.title;
+
 
     playerAuthor.textContent =
         poem.author;
 
 
-    /*
-        Atualiza foto
-    */
-
     setAuthorImage(poem);
 
-
-    /*
-        Para o áudio anterior
-    */
 
     audio.pause();
 
@@ -324,17 +282,9 @@ function selectPoem(index) {
         0;
 
 
-    /*
-        Carrega novo áudio
-    */
-
     audio.src =
         poem.audio;
 
-
-    /*
-        Reseta barra
-    */
 
     progress.value =
         0;
@@ -352,10 +302,6 @@ function selectPoem(index) {
         "";
 
 
-    /*
-        Abre o player
-    */
-
     player.classList.add(
         "open"
     );
@@ -367,23 +313,11 @@ function selectPoem(index) {
     );
 
 
-    /*
-        Atualiza o card selecionado
-    */
-
     renderList();
 
 
-    /*
-        Carrega o áudio
-    */
-
     audio.load();
 
-
-    /*
-        Tenta iniciar automaticamente
-    */
 
     audio
         .play()
@@ -404,27 +338,32 @@ function selectPoem(index) {
 }
 
 
-
 /* =========================================
-   BOTÃO PLAY / PAUSE
+   PLAY / PAUSE
 ========================================= */
 
 function updatePlayButton() {
 
     if (audio.paused) {
 
-        playPause.textContent =
-            "▶";
+        playPause.classList.remove(
+            "is-playing"
+        );
+
 
         playPause.setAttribute(
             "aria-label",
             "Reproduzir"
         );
 
-    } else {
+    }
 
-        playPause.textContent =
-            "Ⅱ";
+    else {
+
+        playPause.classList.add(
+            "is-playing"
+        );
+
 
         playPause.setAttribute(
             "aria-label",
@@ -436,18 +375,13 @@ function updatePlayButton() {
 }
 
 
-
 /* =========================================
-   PLAY / PAUSE
+   CLIQUE PLAY
 ========================================= */
 
 playPause.addEventListener(
     "click",
     async () => {
-
-        /*
-            Se nenhum poema foi selecionado
-        */
 
         if (currentIndex < 0) {
 
@@ -455,10 +389,6 @@ playPause.addEventListener(
 
         }
 
-
-        /*
-            Se estiver parado
-        */
 
         if (audio.paused) {
 
@@ -480,10 +410,6 @@ playPause.addEventListener(
 
         }
 
-        /*
-            Se estiver tocando
-        */
-
         else {
 
             audio.pause();
@@ -495,7 +421,6 @@ playPause.addEventListener(
 
     }
 );
-
 
 
 /* =========================================
@@ -510,9 +435,11 @@ document
 
             audio.pause();
 
+
             player.classList.remove(
                 "open"
             );
+
 
             player.setAttribute(
                 "aria-hidden",
@@ -523,9 +450,8 @@ document
     );
 
 
-
 /* =========================================
-   POEMA ANTERIOR
+   ANTERIOR
 ========================================= */
 
 document
@@ -541,7 +467,7 @@ document
             }
 
 
-            const previousIndex =
+            const index =
                 (
                     currentIndex -
                     1 +
@@ -551,17 +477,14 @@ document
                 poems.length;
 
 
-            selectPoem(
-                previousIndex
-            );
+            selectPoem(index);
 
         }
     );
 
 
-
 /* =========================================
-   PRÓXIMO POEMA
+   PRÓXIMO
 ========================================= */
 
 document
@@ -577,7 +500,7 @@ document
             }
 
 
-            const nextIndex =
+            const index =
                 (
                     currentIndex +
                     1
@@ -586,17 +509,14 @@ document
                 poems.length;
 
 
-            selectPoem(
-                nextIndex
-            );
+            selectPoem(index);
 
         }
     );
 
 
-
 /* =========================================
-   QUANDO O ÁUDIO CARREGAR
+   METADADOS DO ÁUDIO
 ========================================= */
 
 audio.addEventListener(
@@ -612,18 +532,13 @@ audio.addEventListener(
 );
 
 
-
 /* =========================================
-   ATUALIZAÇÃO DO ÁUDIO
+   TEMPO DO ÁUDIO
 ========================================= */
 
 audio.addEventListener(
     "timeupdate",
     () => {
-
-        /*
-            Atualiza barra
-        */
 
         if (audio.duration) {
 
@@ -632,15 +547,10 @@ audio.addEventListener(
                     audio.currentTime /
                     audio.duration
                 )
-                *
-                100;
+                * 100;
 
         }
 
-
-        /*
-            Atualiza tempo
-        */
 
         currentTime.textContent =
             formatTime(
@@ -651,39 +561,28 @@ audio.addEventListener(
 );
 
 
-
 /* =========================================
-   QUANDO COMEÇAR
+   PLAY
 ========================================= */
 
 audio.addEventListener(
     "play",
-    () => {
-
-        updatePlayButton();
-
-    }
+    updatePlayButton
 );
 
 
-
 /* =========================================
-   QUANDO PAUSAR
+   PAUSE
 ========================================= */
 
 audio.addEventListener(
     "pause",
-    () => {
-
-        updatePlayButton();
-
-    }
+    updatePlayButton
 );
 
 
-
 /* =========================================
-   QUANDO TERMINAR
+   FINAL DO POEMA
 ========================================= */
 
 audio.addEventListener(
@@ -692,11 +591,6 @@ audio.addEventListener(
 
         updatePlayButton();
 
-
-        /*
-            Passa automaticamente
-            para o próximo poema
-        */
 
         if (
             currentIndex <
@@ -713,9 +607,8 @@ audio.addEventListener(
 );
 
 
-
 /* =========================================
-   ARRASTAR BARRA DO ÁUDIO
+   BARRA DE PROGRESSO
 ========================================= */
 
 progress.addEventListener(
@@ -741,39 +634,37 @@ progress.addEventListener(
 );
 
 
-
 /* =========================================
-   INICIAR SITE
+   INICIAR
 ========================================= */
 
 renderList();
 
+
 /* =========================================
-   INSTALAR COMO APLICATIVO
+   SERVICE WORKER
 ========================================= */
 
 if ("serviceWorker" in navigator) {
 
-    window.addEventListener("load", () => {
+    window.addEventListener(
+        "load",
+        () => {
 
-        navigator.serviceWorker
-            .register("./service-worker.js")
-            .then(() => {
+            navigator.serviceWorker
+                .register(
+                    "./service-worker.js"
+                )
+                .catch(error => {
 
-                console.log(
-                    "Aplicativo preparado para funcionar offline."
-                );
+                    console.error(
+                        "Erro no aplicativo:",
+                        error
+                    );
 
-            })
-            .catch(error => {
+                });
 
-                console.error(
-                    "Erro ao registrar o aplicativo:",
-                    error
-                );
-
-            });
-
-    });
+        }
+    );
 
 }
