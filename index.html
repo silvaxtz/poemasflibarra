@@ -12,7 +12,7 @@
 
     <meta
         name="theme-color"
-        content="#181a1d"
+        content="#f5e4c7"
     >
 
     <meta
@@ -27,7 +27,7 @@
 
     <meta
         name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent"
+        content="default"
     >
 
     <meta
@@ -37,12 +37,10 @@
 
     <title>FLIBARRA 2026</title>
 
-
     <link
         rel="manifest"
         href="manifest.json"
     >
-
 
     <link
         rel="stylesheet"
@@ -56,7 +54,7 @@
 
 
     <!-- =========================================
-         TELA INICIAL
+         TELA PRINCIPAL
     ========================================== -->
 
     <main
@@ -64,32 +62,44 @@
         class="home-screen"
     >
 
-
-        <!-- Fundo -->
-
         <div
-            class="background-blur"
+            class="event-background"
             aria-hidden="true"
         ></div>
 
 
         <div
-            class="background-overlay"
+            class="event-pattern"
             aria-hidden="true"
         ></div>
 
-
-
-        <!-- Conteúdo principal -->
 
         <div class="home-content">
 
 
-            <div class="festival-label">
+            <!-- TEXTO -->
 
-                EXPERIÊNCIA LITERÁRIA
+            <section class="hero-copy">
 
-            </div>
+                <div class="hero-kicker">
+                    12º FLIBARRA • 2026
+                </div>
+
+
+                <h1>
+                    Vozes que
+                    <br>
+                    <em>permanecem.</em>
+                </h1>
+
+
+                <p>
+                    Uma experiência literária
+                    através das vozes e histórias
+                    de Barra de São Miguel.
+                </p>
+
+            </section>
 
 
 
@@ -110,36 +120,14 @@
             </button>
 
 
-
-            <!-- Indicação de toque -->
-
-            <div class="touch-hint">
-
-
-                <span class="touch-icon">
-
-                    <span></span>
-
-                </span>
-
-
-                <span>
-                    Toque para entrar
-                </span>
-
-
-            </div>
-
-
         </div>
-
 
     </main>
 
 
 
     <!-- =========================================
-         BIBLIOTECA / POEMAS
+         LISTA DE OBRAS
     ========================================== -->
 
     <main
@@ -150,8 +138,6 @@
 
         <header class="library-header">
 
-
-            <!-- VOLTAR -->
 
             <button
                 id="backHome"
@@ -172,36 +158,26 @@
 
 
 
-            <!-- TÍTULO -->
-
             <div>
 
-                <span class="library-kicker">
-
-                    FLIBARRA 2026
-
-                </span>
+                <div class="library-kicker">
+                    12º FLIBARRA • 2026
+                </div>
 
 
                 <h1>
-
-                    Vozes &amp; palavras
-
+                    Obras literárias
                 </h1>
 
             </div>
 
 
 
-            <!-- CONTADOR -->
-
             <span
                 id="poemCount"
                 class="library-count"
             >
-
                 00
-
             </span>
 
 
@@ -209,16 +185,12 @@
 
 
 
-        <!-- LISTA -->
-
         <section class="poems-section">
-
 
             <div
                 id="poemList"
                 class="poem-list"
             ></div>
-
 
         </section>
 
@@ -241,11 +213,9 @@
         <div class="player-inner">
 
 
-            <!-- FECHAR -->
-
             <button
                 id="closePlayer"
-                class="icon-button close-button"
+                class="close-button"
                 aria-label="Fechar player"
             >
 
@@ -255,7 +225,6 @@
                 >
 
                     <path d="M6 6L18 18"/>
-
                     <path d="M18 6L6 18"/>
 
                 </svg>
@@ -263,8 +232,6 @@
             </button>
 
 
-
-            <!-- AUTOR -->
 
             <div class="player-author">
 
@@ -284,27 +251,19 @@
 
                 <div class="player-info">
 
-
                     <div class="now-playing-label">
-
                         OUVINDO AGORA
-
                     </div>
 
 
                     <h2 id="playerTitle">
-
                         Selecione uma obra
-
                     </h2>
 
 
                     <p id="playerAuthor">
-
                         Autor
-
                     </p>
-
 
                 </div>
 
@@ -312,8 +271,6 @@
             </div>
 
 
-
-            <!-- PROGRESSO -->
 
             <div class="progress-area">
 
@@ -328,23 +285,15 @@
                 >
 
 
-
                 <div class="time-row">
 
-
                     <span id="currentTime">
-
                         0:00
-
                     </span>
-
 
                     <span id="duration">
-
                         0:00
-
                     </span>
-
 
                 </div>
 
@@ -353,12 +302,8 @@
 
 
 
-            <!-- CONTROLES -->
-
             <div class="controls">
 
-
-                <!-- ANTERIOR -->
 
                 <button
                     id="previous"
@@ -372,7 +317,6 @@
                     >
 
                         <path d="M11 18L4 12L11 6"/>
-
                         <path d="M20 18L13 12L20 6"/>
 
                     </svg>
@@ -381,14 +325,11 @@
 
 
 
-                <!-- PLAY / PAUSE -->
-
                 <button
                     id="playPause"
                     class="play-button"
                     aria-label="Reproduzir"
                 >
-
 
                     <svg
                         class="play-icon"
@@ -401,7 +342,6 @@
                     </svg>
 
 
-
                     <svg
                         class="pause-icon"
                         viewBox="0 0 24 24"
@@ -409,17 +349,13 @@
                     >
 
                         <path d="M7 5V19"/>
-
                         <path d="M17 5V19"/>
 
                     </svg>
 
-
                 </button>
 
 
-
-                <!-- PRÓXIMO -->
 
                 <button
                     id="next"
@@ -433,7 +369,6 @@
                     >
 
                         <path d="M13 18L20 12L13 6"/>
-
                         <path d="M4 18L11 12L4 6"/>
 
                     </svg>
@@ -445,8 +380,6 @@
 
 
 
-            <!-- MENSAGEM -->
-
             <div
                 id="audioMessage"
                 class="audio-message"
@@ -455,14 +388,9 @@
 
         </div>
 
-
     </section>
 
 
-
-    <!-- =========================================
-         ÁUDIO
-    ========================================== -->
 
     <audio
         id="audio"
@@ -470,8 +398,6 @@
     ></audio>
 
 
-
-    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
 
