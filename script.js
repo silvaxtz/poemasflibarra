@@ -747,3 +747,33 @@ progress.addEventListener(
 ========================================= */
 
 renderList();
+
+/* =========================================
+   INSTALAR COMO APLICATIVO
+========================================= */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+
+                console.log(
+                    "Aplicativo preparado para funcionar offline."
+                );
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Erro ao registrar o aplicativo:",
+                    error
+                );
+
+            });
+
+    });
+
+}
