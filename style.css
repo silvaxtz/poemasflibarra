@@ -1,40 +1,29 @@
-/* =========================================================
-   FLIBARRA — ESTILO PRINCIPAL
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 
 /* =========================================================
-   CORES
+   FLIBARRA 2026
 ========================================================= */
 
 :root {
 
-    --black:
-        #111315;
+    --cream: #f5e4c7;
+    --cream-light: #fff3dc;
 
-    --black-soft:
-        #191b1e;
+    --blue: #292b78;
+    --purple: #4b347d;
+    --teal: #168f8b;
+    --yellow: #f5b82e;
+    --orange: #ec8131;
+    --red: #bd4050;
 
-    --white:
-        #f4f1ea;
+    --text: #29224d;
+    --muted: #766b70;
 
-    --muted:
-        rgba(244,241,234,.58);
+    --line: rgba(41,34,77,.13);
 
-    --line:
-        rgba(255,255,255,.10);
-
-    --orange:
-        #e7a04f;
-
-    --orange-light:
-        #f1bd78;
-
-    --player:
-        #f1e8da;
-
-    --player-text:
-        #171412;
+    --player: #fff0d8;
+    --player-text: #29224d;
 
 }
 
@@ -44,32 +33,11 @@
 ========================================================= */
 
 * {
-
     box-sizing: border-box;
-
 }
 
 
-html {
-
-    width: 100%;
-    height: 100%;
-
-    margin: 0;
-    padding: 0;
-
-    background:
-        var(--black);
-
-    -webkit-font-smoothing:
-        antialiased;
-
-    -moz-osx-font-smoothing:
-        grayscale;
-
-}
-
-
+html,
 body {
 
     width: 100%;
@@ -78,13 +46,21 @@ body {
     margin: 0;
     padding: 0;
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+
+body {
+
     overflow-x: hidden;
 
     background:
-        var(--black);
+        var(--cream);
 
     color:
-        var(--white);
+        var(--text);
 
     font-family:
         "DM Sans",
@@ -94,15 +70,24 @@ body {
     -webkit-tap-highlight-color:
         transparent;
 
-    text-rendering:
-        optimizeLegibility;
-
 }
 
 
-/* =========================================================
-   IMAGENS
-========================================================= */
+button {
+
+    border: 0;
+    outline: 0;
+
+    font-family:
+        inherit;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
 
 img {
 
@@ -114,116 +99,71 @@ img {
 
 
 /* =========================================================
-   BOTÕES
-========================================================= */
-
-button {
-
-    font-family:
-        inherit;
-
-    border:
-        0;
-
-    outline:
-        none;
-
-    cursor:
-        pointer;
-
-    -webkit-tap-highlight-color:
-        transparent;
-
-}
-
-
-/* =========================================================
-   TELA INICIAL
+   TELA PRINCIPAL
 ========================================================= */
 
 .home-screen {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        10;
+    z-index: 20;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
+    justify-content: center;
 
-    justify-content:
-        center;
-
-    overflow:
-        hidden;
+    overflow: hidden;
 
     background:
-        #17191c;
+        var(--cream);
 
     transition:
-        opacity .65s ease,
-        transform .8s cubic-bezier(.2,.8,.2,1);
+        opacity .55s ease,
+        transform .65s ease;
 
 }
 
 
 /* =========================================================
-   QUANDO A HOME SAI
+   FUNDO COLORIDO
 ========================================================= */
 
-.home-screen.hidden {
+.event-background {
 
-    opacity:
-        0;
+    position: absolute;
 
-    transform:
-        scale(1.035);
-
-    pointer-events:
-        none;
-
-}
-
-
-/* =========================================================
-   FUNDO
-========================================================= */
-
-.background-blur {
-
-    position:
-        absolute;
-
-    inset:
-        -80px;
+    inset: -15%;
 
     background:
 
         radial-gradient(
-            circle at 50% 42%,
-            rgba(236,174,92,.16),
-            transparent 25%
+            circle at 10% 20%,
+            rgba(41,43,120,.25),
+            transparent 28%
         ),
 
         radial-gradient(
-            circle at 50% 100%,
-            rgba(255,255,255,.035),
-            transparent 42%
+            circle at 90% 15%,
+            rgba(22,143,139,.24),
+            transparent 28%
         ),
 
-        linear-gradient(
-            145deg,
-            #222528 0%,
-            #151719 48%,
-            #0e1012 100%
-        );
+        radial-gradient(
+            circle at 8% 88%,
+            rgba(236,129,49,.24),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 92% 88%,
+            rgba(189,64,80,.20),
+            transparent 28%
+        ),
+
+        var(--cream);
 
     filter:
         blur(18px);
@@ -235,123 +175,191 @@ button {
 
 
 /* =========================================================
-   TEXTURA DE FUNDO
+   PADRÃO GEOMÉTRICO SUTIL
 ========================================================= */
 
-.background-blur::after {
+.event-pattern {
 
-    content:
-        "";
+    position: absolute;
 
-    position:
-        absolute;
+    inset: 0;
 
-    inset:
-        0;
+    opacity: .075;
 
-    background:
-
-        radial-gradient(
-            circle at center,
-            transparent 0%,
-            rgba(0,0,0,.05) 45%,
-            rgba(0,0,0,.42) 100%
-        );
-
-}
-
-
-/* =========================================================
-   CAMADA ESCURA
-========================================================= */
-
-.background-overlay {
-
-    position:
-        absolute;
-
-    inset:
-        0;
-
-    background:
+    background-image:
 
         linear-gradient(
-            180deg,
-            rgba(0,0,0,.16),
-            rgba(0,0,0,.28)
+            135deg,
+            transparent 74%,
+            var(--blue) 75%,
+            var(--blue) 78%,
+            transparent 79%
+        ),
+
+        linear-gradient(
+            45deg,
+            transparent 74%,
+            var(--orange) 75%,
+            var(--orange) 78%,
+            transparent 79%
         );
+
+    background-size:
+        110px 110px;
 
 }
 
 
 /* =========================================================
-   CONTEÚDO CENTRAL
+   CONTEÚDO PRINCIPAL
 ========================================================= */
 
 .home-content {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
+    z-index: 3;
 
     width:
-        min(760px, 90vw);
+        min(1120px, 90vw);
 
-    display:
-        flex;
+    min-height:
+        100vh;
 
-    flex-direction:
-        column;
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        430px;
 
     align-items:
         center;
 
-    justify-content:
-        center;
+    gap:
+        70px;
 
-    text-align:
-        center;
+    padding:
+        60px 0;
 
 }
 
 
 /* =========================================================
-   TEXTO SUPERIOR
+   TEXTO
 ========================================================= */
 
-.festival-label {
+.hero-copy {
+
+    max-width:
+        650px;
+
+}
+
+
+/* =========================================================
+   PEQUENO TÍTULO
+========================================================= */
+
+.hero-kicker {
 
     margin-bottom:
-        34px;
+        26px;
 
     color:
-        rgba(255,255,255,.62);
+        var(--teal);
 
     font-size:
-        10px;
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .28em;
+
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.hero-copy h1 {
+
+    margin:
+        0;
+
+    color:
+        var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            70px,
+            7vw,
+            108px
+        );
+
+    line-height:
+        .79;
 
     font-weight:
         600;
 
     letter-spacing:
-        .34em;
-
-    text-transform:
-        uppercase;
-
-    opacity:
-        0;
-
-    animation:
-        fadeUp .9s .15s ease forwards;
+        -.055em;
 
 }
 
 
 /* =========================================================
-   BOTÃO DO LOGO
+   DESTAQUE
+========================================================= */
+
+.hero-copy h1 em {
+
+    color:
+        var(--purple);
+
+    font-style:
+        italic;
+
+}
+
+
+/* =========================================================
+   TEXTO DESCRITIVO
+========================================================= */
+
+.hero-copy p {
+
+    max-width:
+        470px;
+
+    margin:
+        34px 0 0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =========================================================
+   LOGO
 ========================================================= */
 
 .logo-button {
@@ -360,18 +368,10 @@ button {
         relative;
 
     width:
-        clamp(
-            300px,
-            43vw,
-            590px
-        );
+        410px;
 
     height:
-        clamp(
-            300px,
-            43vw,
-            590px
-        );
+        410px;
 
     display:
         flex;
@@ -385,29 +385,23 @@ button {
     padding:
         0;
 
-    border-radius:
-        50%;
-
     background:
         transparent;
 
-    appearance:
-        none;
-
-    -webkit-appearance:
-        none;
-
-    opacity:
+    border:
         0;
 
-    animation:
-        logoEnter 1.1s .1s cubic-bezier(.2,.8,.2,1) forwards;
+    border-radius:
+        50%;
+
+    transition:
+        transform .25s ease;
 
 }
 
 
 /* =========================================================
-   BRILHO ATRÁS DO LOGO
+   BRILHO ATRÁS DA LOGO
 ========================================================= */
 
 .logo-button::before {
@@ -428,67 +422,24 @@ button {
 
         radial-gradient(
             circle,
-            rgba(231,160,79,.18),
-            transparent 67%
+            rgba(255,255,255,.75),
+            transparent 70%
         );
 
     filter:
-        blur(28px);
+        blur(25px);
 
-    transform:
-        scale(.85);
-
-    transition:
-        transform .5s ease,
-        opacity .5s ease;
+    z-index:
+        -1;
 
 }
 
 
 /* =========================================================
-   ANEL DE LUZ
-========================================================= */
-
-.logo-button::after {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    inset:
-        8%;
-
-    border-radius:
-        50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    box-shadow:
-
-        0 0 45px
-        rgba(231,160,79,.08);
-
-    pointer-events:
-        none;
-
-}
-
-
-/* =========================================================
-   LOGO
+   LOGO FLIBARRA
 ========================================================= */
 
 .flibarra-logo {
-
-    position:
-        relative;
-
-    z-index:
-        2;
 
     width:
         100%;
@@ -499,16 +450,13 @@ button {
     object-fit:
         contain;
 
-    object-position:
-        center;
-
     border-radius:
         50%;
 
     filter:
         drop-shadow(
-            0 20px 45px
-            rgba(0,0,0,.38)
+            0 20px 35px
+            rgba(41,34,77,.22)
         );
 
     user-select:
@@ -517,179 +465,31 @@ button {
     -webkit-user-drag:
         none;
 
-    transition:
-        transform .45s cubic-bezier(.2,.8,.2,1),
-        filter .45s ease;
-
 }
 
 
-/* =========================================================
-   EFEITO AO TOCAR
-========================================================= */
-
-.logo-button:active .flibarra-logo {
+.logo-button:active {
 
     transform:
         scale(.96);
 
 }
 
-.logo-button:active::before {
-
-    transform:
-        scale(1.05);
-
-    opacity:
-        .8;
-
-}
-
 
 /* =========================================================
-   INDICAÇÃO DE TOQUE
+   SAÍDA DA HOME
 ========================================================= */
 
-.touch-hint {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        11px;
-
-    margin-top:
-        34px;
-
-    color:
-        rgba(255,255,255,.57);
-
-    font-size:
-        12px;
-
-    letter-spacing:
-        .04em;
+.home-screen.hidden {
 
     opacity:
         0;
 
-    animation:
-        fadeUp .9s .65s ease forwards;
+    transform:
+        scale(1.02);
 
-}
-
-
-/* =========================================================
-   ÍCONE DE TOQUE
-========================================================= */
-
-.touch-icon {
-
-    position:
-        relative;
-
-    width:
-        19px;
-
-    height:
-        23px;
-
-    display:
-        block;
-
-    border:
-        1.5px solid
-        rgba(255,255,255,.55);
-
-    border-radius:
-        10px 10px 11px 11px;
-
-}
-
-
-/* pequeno dedo */
-
-.touch-icon span {
-
-    position:
-        absolute;
-
-    left:
-        7px;
-
-    top:
-        4px;
-
-    width:
-        3px;
-
-    height:
-        8px;
-
-    border-radius:
-        4px;
-
-    background:
-        rgba(255,255,255,.60);
-
-}
-
-
-/* =========================================================
-   ANIMAÇÕES
-========================================================= */
-
-@keyframes logoEnter {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            scale(.88)
-            translateY(16px);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
-}
-
-
-@keyframes fadeUp {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(12px);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0);
-
-    }
+    pointer-events:
+        none;
 
 }
 
@@ -700,11 +500,8 @@ button {
 
 .library-screen {
 
-    position:
-        relative;
-
     width:
-        min(1180px, 100%);
+        min(1100px, 100%);
 
     min-height:
         100vh;
@@ -713,9 +510,25 @@ button {
         0 auto;
 
     padding:
-        52px
-        58px
-        280px;
+        46px
+        54px
+        270px;
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(22,143,139,.08),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(236,129,49,.08),
+            transparent 30%
+        ),
+
+        var(--cream);
 
     opacity:
         0;
@@ -727,15 +540,11 @@ button {
         none;
 
     transition:
-        opacity .55s ease,
-        transform .65s cubic-bezier(.2,.8,.2,1);
+        opacity .45s ease,
+        transform .55s ease;
 
 }
 
-
-/* =========================================================
-   BIBLIOTECA VISÍVEL
-========================================================= */
 
 .library-screen.visible {
 
@@ -752,13 +561,12 @@ button {
 
 
 /* =========================================================
-   CABEÇALHO
+   CABEÇALHO DA BIBLIOTECA
 ========================================================= */
 
 .library-header {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         52px
@@ -769,7 +577,7 @@ button {
         center;
 
     gap:
-        20px;
+        18px;
 
     padding-bottom:
         28px;
@@ -780,10 +588,6 @@ button {
 
 }
 
-
-/* =========================================================
-   VOLTAR
-========================================================= */
 
 .back-button {
 
@@ -806,18 +610,14 @@ button {
         50%;
 
     background:
-        rgba(255,255,255,.055);
+        rgba(41,34,77,.06);
 
     color:
-        var(--white);
+        var(--text);
 
     border:
         1px solid
         var(--line);
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
 
 }
 
@@ -837,7 +637,7 @@ button {
         currentColor;
 
     stroke-width:
-        1.7;
+        1.8;
 
     stroke-linecap:
         round;
@@ -848,43 +648,27 @@ button {
 }
 
 
-.back-button:active {
-
-    transform:
-        scale(.90);
-
-}
-
-
-/* =========================================================
-   KICKER
-========================================================= */
-
 .library-kicker {
 
     color:
-        var(--orange);
+        var(--teal);
 
     font-size:
         9px;
 
     font-weight:
-        600;
+        700;
 
     letter-spacing:
-        .25em;
+        .20em;
 
 }
 
 
-/* =========================================================
-   TÍTULO
-========================================================= */
-
 .library-header h1 {
 
     margin:
-        4px 0 0;
+        5px 0 0;
 
     font-family:
         "Cormorant Garamond",
@@ -892,46 +676,42 @@ button {
         serif;
 
     font-size:
-        44px;
+        46px;
 
     line-height:
-        .95;
+        .9;
+
+    font-weight:
+        600;
+
+}
+
+
+.library-count {
+
+    color:
+        var(--purple);
+
+    font-size:
+        11px;
 
     font-weight:
         600;
 
     letter-spacing:
-        -.035em;
+        .12em;
 
 }
 
 
 /* =========================================================
-   CONTADOR
-========================================================= */
-
-.library-count {
-
-    color:
-        var(--muted);
-
-    font-size:
-        11px;
-
-    letter-spacing:
-        .15em;
-
-}
-
-
-/* =========================================================
-   POEMAS
+   LISTA
 ========================================================= */
 
 .poems-section {
 
     padding-top:
-        32px;
+        30px;
 
 }
 
@@ -960,36 +740,31 @@ button {
         100%;
 
     min-height:
-        110px;
+        108px;
 
     display:
         grid;
 
     grid-template-columns:
-        65px
+        64px
         1fr
-        58px;
+        56px;
 
     align-items:
         center;
 
     gap:
-        20px;
+        18px;
 
     padding:
-        19px
+        18px
         22px;
 
     color:
-        var(--white);
+        var(--text);
 
     background:
-
-        linear-gradient(
-            105deg,
-            rgba(255,255,255,.052),
-            rgba(255,255,255,.018)
-        );
+        rgba(255,250,240,.76);
 
     border:
         1px solid
@@ -1001,13 +776,9 @@ button {
     text-align:
         left;
 
-    overflow:
-        hidden;
-
-    transition:
-        transform .2s ease,
-        border-color .2s ease,
-        background .2s ease;
+    box-shadow:
+        0 6px 22px
+        rgba(41,34,77,.06);
 
 }
 
@@ -1020,47 +791,48 @@ button {
     position:
         absolute;
 
-    top:
+    left:
         0;
 
-    left:
+    top:
         0;
 
     bottom:
         0;
 
     width:
-        3px;
+        4px;
+
+    border-radius:
+        4px 0 0 4px;
 
     background:
-        transparent;
+        var(--teal);
 
-    transition:
-        background .2s ease;
+}
 
+
+.poem-card:nth-child(4n + 1)::before {
+    background: var(--blue);
+}
+
+.poem-card:nth-child(4n + 2)::before {
+    background: var(--orange);
+}
+
+.poem-card:nth-child(4n + 3)::before {
+    background: var(--teal);
+}
+
+.poem-card:nth-child(4n + 4)::before {
+    background: var(--red);
 }
 
 
 .poem-card.active {
 
     border-color:
-        rgba(231,160,79,.55);
-
-    background:
-
-        linear-gradient(
-            105deg,
-            rgba(231,160,79,.13),
-            rgba(255,255,255,.018)
-        );
-
-}
-
-
-.poem-card.active::before {
-
-    background:
-        var(--orange);
+        rgba(41,43,120,.30);
 
 }
 
@@ -1072,7 +844,7 @@ button {
 .poem-number {
 
     color:
-        var(--orange);
+        var(--purple);
 
     font-family:
         "Cormorant Garamond",
@@ -1082,20 +854,20 @@ button {
     font-size:
         34px;
 
-    line-height:
-        1;
+    font-weight:
+        600;
 
 }
 
 
 /* =========================================================
-   TÍTULO
+   TÍTULO DA OBRA
 ========================================================= */
 
 .poem-title {
 
     margin:
-        0 0 6px;
+        0 0 5px;
 
     font-family:
         "Cormorant Garamond",
@@ -1114,10 +886,6 @@ button {
 }
 
 
-/* =========================================================
-   AUTOR
-========================================================= */
-
 .poem-author {
 
     margin:
@@ -1133,7 +901,7 @@ button {
 
 
 /* =========================================================
-   PLAY DO CARD
+   PLAY DA OBRA
 ========================================================= */
 
 .poem-play {
@@ -1160,27 +928,16 @@ button {
         50%;
 
     background:
-        var(--orange);
+        var(--blue);
 
     color:
-        #17120d;
+        white;
 
     font-size:
         16px;
 
     padding-left:
         2px;
-
-    transition:
-        transform .2s ease;
-
-}
-
-
-.poem-card:active .poem-play {
-
-    transform:
-        scale(.90);
 
 }
 
@@ -1221,10 +978,7 @@ button {
         none;
 
     transition:
-
-        transform .5s
-        cubic-bezier(.2,.8,.2,1),
-
+        transform .5s cubic-bezier(.2,.8,.2,1),
         opacity .25s ease;
 
 }
@@ -1244,57 +998,44 @@ button {
 }
 
 
-/* =========================================================
-   PLAYER INTERNO
-========================================================= */
-
 .player-inner {
 
     position:
         relative;
 
     width:
-        min(1080px,100%);
+        min(1050px,100%);
 
     margin:
-        0 auto;
+        auto;
 
     padding:
-        24px
+        23px
         30px
-        20px;
+        19px;
 
     color:
         var(--player-text);
 
     background:
-
-        linear-gradient(
-            135deg,
-            #f5ede1,
-            #eee4d5
-        );
+        var(--player);
 
     border:
-        1px solid
-        rgba(255,255,255,.5);
+        2px solid
+        rgba(41,43,120,.10);
 
     border-radius:
         26px;
 
     box-shadow:
-
-        0 -14px 55px
-        rgba(0,0,0,.35),
-
-        0 20px 70px
-        rgba(0,0,0,.30);
+        0 -12px 50px
+        rgba(41,34,77,.20);
 
 }
 
 
 /* =========================================================
-   FECHAR
+   FECHAR PLAYER
 ========================================================= */
 
 .close-button {
@@ -1327,7 +1068,7 @@ button {
         50%;
 
     background:
-        rgba(0,0,0,.055);
+        rgba(41,34,77,.07);
 
     color:
         var(--player-text);
@@ -1406,10 +1147,10 @@ button {
         17px;
 
     background:
-        #d4c4b0;
+        var(--cream);
 
     color:
-        #4a3829;
+        var(--purple);
 
     font-family:
         "Cormorant Garamond",
@@ -1439,17 +1180,13 @@ button {
 }
 
 
-/* =========================================================
-   TEXTO DO PLAYER
-========================================================= */
-
 .now-playing-label {
 
     margin-bottom:
         5px;
 
     color:
-        rgba(23,20,17,.45);
+        rgba(41,34,77,.45);
 
     font-size:
         9px;
@@ -1488,7 +1225,7 @@ button {
         0;
 
     color:
-        rgba(23,20,17,.58);
+        rgba(41,34,77,.60);
 
     font-size:
         13px;
@@ -1520,14 +1257,10 @@ button {
         block;
 
     accent-color:
-        #9a6738;
+        var(--orange);
 
 }
 
-
-/* =========================================================
-   TEMPO
-========================================================= */
 
 .time-row {
 
@@ -1541,7 +1274,7 @@ button {
         6px;
 
     color:
-        rgba(23,20,17,.5);
+        rgba(41,34,77,.50);
 
     font-size:
         10px;
@@ -1594,14 +1327,14 @@ button {
         50%;
 
     background:
-        rgba(0,0,0,.035);
+        rgba(41,34,77,.055);
 
     color:
         var(--player-text);
 
     border:
         1px solid
-        rgba(23,20,17,.11);
+        rgba(41,34,77,.12);
 
 }
 
@@ -1632,10 +1365,6 @@ button {
 }
 
 
-/* =========================================================
-   PLAY
-========================================================= */
-
 .play-button {
 
     width:
@@ -1660,14 +1389,14 @@ button {
         50%;
 
     background:
-        var(--player-text);
+        var(--blue);
 
     color:
-        var(--player);
+        white;
 
     box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.23);
+        0 8px 22px
+        rgba(41,43,120,.25);
 
 }
 
@@ -1737,7 +1466,7 @@ button {
         center;
 
     color:
-        #a05b36;
+        var(--red);
 
     font-size:
         11px;
@@ -1749,31 +1478,42 @@ button {
    TABLET
 ========================================================= */
 
-@media (min-width: 701px) {
+@media (max-width: 900px) {
 
     .home-content {
 
-        transform:
-            translateY(-10px);
+        grid-template-columns:
+            minmax(0, 1fr)
+            340px;
+
+        gap:
+            35px;
+
+        width:
+            92vw;
 
     }
 
-}
 
+    .hero-copy h1 {
 
-/* =========================================================
-   TABLET GRANDE
-========================================================= */
+        font-size:
+            clamp(
+                58px,
+                8vw,
+                84px
+            );
 
-@media (min-width: 1000px) {
+    }
+
 
     .logo-button {
 
         width:
-            500px;
+            340px;
 
         height:
-            500px;
+            340px;
 
     }
 
@@ -1781,64 +1521,88 @@ button {
 
 
 /* =========================================================
-   TABLET MÉDIO
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .library-screen {
-
-        padding:
-            42px
-            38px
-            270px;
-
-    }
-
-}
-
-
-/* =========================================================
-   TELAS MENORES
+   TABLET RETRATO
 ========================================================= */
 
 @media (max-width: 700px) {
 
+    .home-content {
+
+        grid-template-columns:
+            1fr;
+
+        grid-template-rows:
+            auto
+            auto;
+
+        justify-items:
+            center;
+
+        text-align:
+            center;
+
+        gap:
+            32px;
+
+        width:
+            90vw;
+
+        padding:
+            40px 0;
+
+    }
+
+
+    .hero-copy {
+
+        max-width:
+            90vw;
+
+    }
+
+
+    .hero-copy h1 {
+
+        font-size:
+            62px;
+
+    }
+
+
+    .hero-copy p {
+
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+
+        font-size:
+            14px;
+
+    }
+
+
     .logo-button {
 
         width:
-            min(78vw, 390px);
+            280px;
 
         height:
-            min(78vw, 390px);
+            280px;
 
     }
 
-    .festival-label {
-
-        margin-bottom:
-            25px;
-
-        font-size:
-            9px;
-
-    }
-
-    .touch-hint {
-
-        margin-top:
-            27px;
-
-    }
 
     .library-screen {
 
         padding:
-            30px
-            20px
+            32px
+            22px
             250px;
 
     }
+
 
     .library-header {
 
@@ -1848,9 +1612,10 @@ button {
             auto;
 
         gap:
-            13px;
+            12px;
 
     }
+
 
     .library-header h1 {
 
@@ -1858,6 +1623,7 @@ button {
             36px;
 
     }
+
 
     .poem-card {
 
@@ -1874,6 +1640,7 @@ button {
 
     }
 
+
     .poem-title {
 
         font-size:
@@ -1881,12 +1648,14 @@ button {
 
     }
 
+
     .poem-number {
 
         font-size:
             27px;
 
     }
+
 
     .poem-play {
 
@@ -1898,12 +1667,14 @@ button {
 
     }
 
+
     .player {
 
         padding:
             8px;
 
     }
+
 
     .player-inner {
 
@@ -1914,6 +1685,7 @@ button {
             22px;
 
     }
+
 
     .author-image {
 
@@ -1928,6 +1700,7 @@ button {
 
     }
 
+
     .player-info h2 {
 
         font-size:
@@ -1935,34 +1708,11 @@ button {
 
     }
 
+
     .controls {
 
         gap:
             20px;
-
-    }
-
-}
-
-
-/* =========================================================
-   ACESSIBILIDADE / MOVIMENTO
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            .01ms !important;
 
     }
 
