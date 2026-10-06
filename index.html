@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#0e0d0c">
+
+    <title>Evento Literário</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- CABEÇALHO -->
+        <header class="hero">
+
+            <div class="eyebrow">
+                EVENTO LITERÁRIO
+            </div>
+
+            <h1>
+                Vozes que<br>
+                <em>permanecem.</em>
+            </h1>
+
+            <p>
+                Toque em uma obra para ouvir
+                a voz por trás das palavras.
+            </p>
+
+        </header>
+
+
+        <!-- LISTA DE POEMAS -->
+        <section class="poems-section">
+
+            <div class="section-heading">
+
+                <span>POEMAS</span>
+
+                <span id="poemCount">
+                    00 obras
+                </span>
+
+            </div>
+
+
+            <div id="poemList" class="poem-list">
+
+                <!-- Os poemas serão inseridos pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ========================================= -->
+    <!-- PLAYER QUE DESLIZA DA PARTE DE BAIXO -->
+    <!-- ========================================= -->
+
+    <section id="player"
+             class="player"
+             aria-hidden="true">
+
+        <div class="player-inner">
+
+
+            <!-- FECHAR -->
+            <button
+                id="closePlayer"
+                class="icon-button close-button"
+                aria-label="Fechar player">
+
+                ×
+
+            </button>
+
+
+
+            <!-- AUTOR -->
+            <div class="player-author">
+
+
+                <!-- FOTO DO AUTOR -->
+                <div id="authorImage"
+                     class="author-image">
+
+                    <span id="authorInitials">
+                        ?
+                    </span>
+
+                </div>
+
+
+
+                <!-- INFORMAÇÕES -->
+                <div class="player-info">
+
+                    <div class="now-playing-label">
+                        OUVINDO AGORA
+                    </div>
+
+                    <h2 id="playerTitle">
+                        Selecione um poema
+                    </h2>
+
+                    <p id="playerAuthor">
+                        Autor
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BARRA DE PROGRESSO -->
+            <div class="progress-area">
+
+                <input
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                    aria-label="Progresso do áudio"
+                >
+
+                <div class="time-row">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTROLES -->
+            <div class="controls">
+
+
+                <!-- ANTERIOR -->
+                <button
+                    id="previous"
+                    class="secondary-control"
+                    aria-label="Poema anterior">
+
+                    ↶
+
+                </button>
+
+
+
+                <!-- PLAY / PAUSE -->
+                <button
+                    id="playPause"
+                    class="play-button"
+                    aria-label="Reproduzir">
+
+                    ▶
+
+                </button>
+
+
+
+                <!-- PRÓXIMO -->
+                <button
+                    id="next"
+                    class="secondary-control"
+                    aria-label="Próximo poema">
+
+                    ↷
+
+                </button>
+
+            </div>
+
+
+
+            <!-- MENSAGEM DE ERRO -->
+            <div id="audioMessage"
+                 class="audio-message">
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ÁUDIO -->
+    <audio id="audio" preload="metadata"></audio>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
