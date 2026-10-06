@@ -1,0 +1,735 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+:root {
+    --bg: #11100f;
+    --bg-soft: #181614;
+    --card: #1d1a17;
+
+    --line: rgba(255, 255, 255, 0.12);
+
+    --text: #f3eee6;
+    --muted: #aaa39a;
+
+    --accent: #d7a86e;
+    --accent-soft: rgba(215, 168, 110, 0.15);
+
+    --player: #f0e9de;
+    --player-text: #171411;
+
+    --radius: 22px;
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+button,
+input {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.app {
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        46px
+        52px
+        210px;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.hero {
+
+    padding:
+        18px
+        0
+        46px;
+
+    border-bottom:
+        1px solid
+        var(--line);
+}
+
+
+.eyebrow {
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.2em;
+
+    margin-bottom: 22px;
+}
+
+
+.hero h1 {
+
+    margin: 0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(54px, 8vw, 96px);
+
+    line-height: 0.84;
+
+    font-weight: 600;
+
+    letter-spacing: -0.035em;
+}
+
+
+.hero h1 em {
+
+    color: var(--accent);
+
+    font-style: italic;
+}
+
+
+.hero p {
+
+    max-width: 510px;
+
+    margin:
+        28px 0 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   SEÇÃO DOS POEMAS
+========================================= */
+
+.poems-section {
+
+    padding-top: 30px;
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 0.16em;
+
+    font-weight: 600;
+}
+
+
+.poem-list {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+/* =========================================
+   CARD DO POEMA
+========================================= */
+
+.poem-card {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        62px
+        1fr
+        58px;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding:
+        16px
+        18px;
+
+    min-height: 92px;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.018)
+        );
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 17px;
+
+    text-align: left;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.poem-card:hover,
+.poem-card.active {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(215,168,110,0.55);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(215,168,110,0.13),
+            rgba(255,255,255,0.025)
+        );
+}
+
+
+/* número */
+
+.poem-number {
+
+    color: var(--accent);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 28px;
+}
+
+
+/* título */
+
+.poem-title {
+
+    margin:
+        0 0 5px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+    font-weight: 600;
+}
+
+
+/* autor */
+
+.poem-author {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* botão play */
+
+.poem-play {
+
+    justify-self: end;
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: var(--bg);
+
+    background: var(--accent);
+
+    font-size: 17px;
+
+    padding-left: 3px;
+}
+
+
+/* =========================================
+   PLAYER
+========================================= */
+
+.player {
+
+    position: fixed;
+
+    z-index: 20;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding:
+        14px
+        18px
+        20px;
+
+    transform:
+        translateY(110%);
+
+    transition:
+        transform
+        0.45s
+        cubic-bezier(.2,.8,.2,1);
+
+    pointer-events: none;
+}
+
+
+/* quando aberto */
+
+.player.open {
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================
+   CAIXA DO PLAYER
+========================================= */
+
+.player-inner {
+
+    position: relative;
+
+    width:
+        min(1020px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        22px
+        26px
+        20px;
+
+    color: var(--player-text);
+
+    background:
+        var(--player);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,0.55);
+}
+
+
+/* =========================================
+   BOTÃO FECHAR
+========================================= */
+
+.close-button {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 16px;
+}
+
+
+.icon-button {
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    color:
+        var(--player-text);
+
+    background:
+        rgba(0,0,0,0.08);
+
+    font-size: 24px;
+}
+
+
+/* =========================================
+   AUTOR
+========================================= */
+
+.player-author {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding-right: 50px;
+}
+
+
+/* foto */
+
+.author-image {
+
+    width: 76px;
+    height: 76px;
+
+    flex: 0 0 76px;
+
+    overflow: hidden;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        #d5c7b5;
+
+    color:
+        #4b3927;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+.author-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   INFORMAÇÕES DO PLAYER
+========================================= */
+
+.now-playing-label {
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    opacity: 0.52;
+}
+
+
+.player-info h2 {
+
+    margin:
+        4px 0 2px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 30px;
+
+    line-height: 1;
+}
+
+
+.player-info p {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    opacity: 0.62;
+}
+
+
+/* =========================================
+   BARRA DE PROGRESSO
+========================================= */
+
+.progress-area {
+
+    margin-top: 18px;
+}
+
+
+#progress {
+
+    width: 100%;
+
+    height: 5px;
+
+    display: block;
+
+    accent-color:
+        #8e633a;
+}
+
+
+.time-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 6px;
+
+    font-size: 10px;
+
+    opacity: 0.55;
+}
+
+
+/* =========================================
+   CONTROLES
+========================================= */
+
+.controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 28px;
+
+    margin-top: 7px;
+}
+
+
+.secondary-control,
+.play-button {
+
+    border: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+}
+
+
+.secondary-control {
+
+    width: 42px;
+    height: 42px;
+
+    color:
+        var(--player-text);
+
+    background:
+        transparent;
+
+    font-size: 24px;
+}
+
+
+.play-button {
+
+    width: 58px;
+    height: 58px;
+
+    color:
+        var(--player);
+
+    background:
+        var(--player-text);
+
+    font-size: 20px;
+
+    padding-left: 3px;
+}
+
+
+/* =========================================
+   MENSAGEM
+========================================= */
+
+.audio-message {
+
+    min-height: 16px;
+
+    margin-top: 3px;
+
+    text-align: center;
+
+    color: #a05b36;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   TABLET / TELAS MENORES
+========================================= */
+
+@media (max-width: 700px) {
+
+    .app {
+
+        padding:
+            30px
+            20px
+            205px;
+    }
+
+
+    .hero {
+
+        padding-bottom: 34px;
+    }
+
+
+    .poem-card {
+
+        grid-template-columns:
+            42px
+            1fr
+            50px;
+
+        gap: 12px;
+    }
+
+
+    .poem-title {
+
+        font-size: 23px;
+    }
+
+
+    .player {
+
+        padding: 8px;
+    }
+
+
+    .player-inner {
+
+        padding:
+            18px
+            18px
+            15px;
+    }
+
+}
+
+
+/* =========================================
+   TABLET GRANDE
+========================================= */
+
+@media (min-width: 900px) {
+
+    .poem-list {
+
+        gap: 12px;
+    }
+
+
+    .poem-card {
+
+        min-height: 104px;
+
+        padding:
+            18px
+            22px;
+    }
+
+}
