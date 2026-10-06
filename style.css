@@ -1,3 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
+:root {
+
+    --cream:
+        #f5e4c7;
+
+    --cream-light:
+        #fff3dc;
+
+    --blue:
+        #292b78;
+
+    --purple:
+        #4b347d;
+
+    --teal:
+        #168f8b;
+
+    --yellow:
+        #f5b82e;
+
+    --orange:
+        #ec8131;
+
+    --red:
+        #bd4050;
+
+    --text:
+        #29224d;
+
+    --muted:
+        #766b70;
+
+    --line:
+        rgba(41,34,77,.13);
+
+    --player:
+        #fff0d8;
+
+    --player-text:
+        #29224d;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+html {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+}
+
+
+body {
+
+    width:
+        100%;
+
+    min-height:
+        100%;
+
+    margin:
+        0;
+
+    background:
+        var(--cream);
+
+    color:
+        var(--text);
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    overflow:
+        hidden;
+
+    -webkit-font-smoothing:
+        antialiased;
+
+    text-rendering:
+        optimizeLegibility;
+
+}
+
+
+button,
+input {
+
+    font:
+        inherit;
+
+}
+
+
+button {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    cursor:
+        pointer;
+
+}
+
+
+img {
+
+    max-width:
+        100%;
+
+}
+
+
+/* =========================================================
+   TELA PRINCIPAL
+========================================================= */
+
+.home-screen {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        20;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--cream);
+
+    transition:
+        opacity .55s ease,
+        transform .65s ease;
+
+}
+
+
+.home-screen.hidden {
+
+    opacity:
+        0;
+
+    transform:
+        scale(1.03);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+.event-background {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(41,43,120,.08),
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(22,143,139,.08),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(245,184,46,.07),
+            transparent 35%
+        ),
+
+        var(--cream);
+
+}
+
+
+/* =========================================================
+   PADRÃO DECORATIVO
+========================================================= */
+
+.event-pattern {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        1;
+
+    pointer-events:
+        none;
+
+    opacity:
+        .28;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(75,52,125,.13) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        26px 26px;
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            transparent,
+            black 20%,
+            black 80%,
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   CONTEÚDO DA HOME
+========================================================= */
+
+.home-content {
+
+    position:
+        relative;
+
+    z-index:
+        3;
+
+    width:
+        min(1120px, 90vw);
+
+    min-height:
+        100vh;
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 430px;
+
+    align-items:
+        center;
+
+    gap:
+        70px;
+
+    padding:
+        60px 0;
+
+}
+
+
+/* =========================================================
+   TEXTO PRINCIPAL
+========================================================= */
+
+.hero-copy {
+
+    position:
+        relative;
+
+    z-index:
+        4;
+
+}
+
+
+.hero-kicker {
+
+    margin-bottom:
+        22px;
+
+    color:
+        var(--blue);
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .18em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.hero-copy h1 {
+
+    max-width:
+        650px;
+
+    margin:
+        0;
+
+    color:
+        var(--blue);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(70px, 8vw, 112px);
+
+    font-weight:
+        600;
+
+    line-height:
+        .82;
+
+    letter-spacing:
+        -.045em;
+
+}
+
+
+.hero-copy h1 em {
+
+    color:
+        var(--purple);
+
+    font-style:
+        italic;
+
+    font-weight:
+        600;
+
+}
+
+
+.hero-copy p {
+
+    max-width:
+        470px;
+
+    margin:
+        32px 0 0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        17px;
+
+    line-height:
+        1.65;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
 .logo-button {
 
     position:
@@ -108,7 +525,7 @@
 
 
 /* =========================================================
-   INDICAÇÃO PARA ENTRAR
+   TEXTO ABAIXO DA LOGO
 ========================================================= */
 
 .logo-hint {
@@ -161,11 +578,1625 @@
 
     0%,
     100% {
-        opacity: .45;
+
+        opacity:
+            .45;
+
     }
 
     50% {
-        opacity: 1;
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+/* =========================================================
+   TELA DE OBRAS
+========================================================= */
+
+.library-screen {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        10;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--cream-light);
+
+    opacity:
+        0;
+
+    transform:
+        translateY(25px);
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .45s ease,
+        transform .55s ease;
+
+}
+
+
+.library-screen.visible {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+
+    pointer-events:
+        auto;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DA BIBLIOTECA
+========================================================= */
+
+.library-header {
+
+    width:
+        min(1120px, 90vw);
+
+    margin:
+        0 auto;
+
+    padding:
+        50px 0 35px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        60px 1fr auto;
+
+    align-items:
+        center;
+
+    gap:
+        22px;
+
+    border-bottom:
+        1px solid var(--line);
+
+}
+
+
+.library-kicker {
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--purple);
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .16em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.library-header h1 {
+
+    margin:
+        0;
+
+    color:
+        var(--blue);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        52px;
+
+    font-weight:
+        600;
+
+    line-height:
+        .95;
+
+    letter-spacing:
+        -.03em;
+
+}
+
+
+.library-count {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        52px;
+
+    height:
+        52px;
+
+    padding:
+        0 12px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        50%;
+
+    color:
+        var(--purple);
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
+.back-button {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    color:
+        var(--blue);
+
+    background:
+        transparent;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        50%;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+
+.back-button:hover {
+
+    background:
+        rgba(41,43,120,.06);
+
+    transform:
+        translateX(-2px);
+
+}
+
+
+.back-button svg {
+
+    width:
+        21px;
+
+    height:
+        21px;
+
+    fill:
+        none;
+
+    stroke:
+        currentColor;
+
+    stroke-width:
+        1.7;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
+}
+
+
+/* =========================================================
+   LISTA
+========================================================= */
+
+.poems-section {
+
+    flex:
+        1;
+
+    width:
+        min(1120px, 90vw);
+
+    margin:
+        0 auto;
+
+    padding:
+        38px 0 180px;
+
+    overflow-y:
+        auto;
+
+}
+
+
+.poem-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        18px;
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.poem-card {
+
+    position:
+        relative;
+
+    min-height:
+        145px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        48px 1fr 50px;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    padding:
+        26px 28px;
+
+    text-align:
+        left;
+
+    color:
+        var(--text);
+
+    background:
+        rgba(255,255,255,.55);
+
+    border:
+        1px solid rgba(41,34,77,.10);
+
+    border-radius:
+        22px;
+
+    box-shadow:
+        0 10px 35px rgba(41,34,77,.05);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.poem-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(41,34,77,.09);
+
+    border-color:
+        rgba(75,52,125,.22);
+
+}
+
+
+.poem-card.active {
+
+    border-color:
+        rgba(75,52,125,.35);
+
+}
+
+
+.poem-number {
+
+    color:
+        var(--orange);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        25px;
+
+    font-weight:
+        700;
+
+}
+
+
+.poem-title {
+
+    margin:
+        0 0 6px;
+
+    color:
+        var(--blue);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        29px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.05;
+
+}
+
+
+.poem-author {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.4;
+
+}
+
+
+/* =========================================================
+   PLAY DA LISTA
+========================================================= */
+
+.poem-play {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    color:
+        #fff;
+
+    background:
+        var(--blue);
+
+    border-radius:
+        50%;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.poem-card:hover .poem-play {
+
+    transform:
+        scale(1.06);
+
+    background:
+        var(--purple);
+
+}
+
+
+.poem-play svg {
+
+    width:
+        20px;
+
+    height:
+        20px;
+
+    display:
+        block;
+
+    flex:
+        0 0 auto;
+
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player {
+
+    position:
+        fixed;
+
+    left:
+        50%;
+
+    bottom:
+        0;
+
+    z-index:
+        50;
+
+    width:
+        min(900px, calc(100vw - 40px));
+
+    transform:
+        translate(-50%, 110%);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        opacity .35s ease;
+
+}
+
+
+.player.open {
+
+    transform:
+        translate(-50%, 0);
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+.player-inner {
+
+    position:
+        relative;
+
+    padding:
+        22px 28px 24px;
+
+    background:
+        var(--player);
+
+    border:
+        1px solid rgba(41,34,77,.12);
+
+    border-bottom:
+        0;
+
+    border-radius:
+        26px 26px 0 0;
+
+    box-shadow:
+        0 -20px 60px rgba(41,34,77,.12);
+
+}
+
+
+/* =========================================================
+   FECHAR PLAYER
+========================================================= */
+
+.close-button {
+
+    position:
+        absolute;
+
+    top:
+        16px;
+
+    right:
+        18px;
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    color:
+        var(--muted);
+
+    background:
+        transparent;
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+}
+
+
+.close-button:hover {
+
+    background:
+        rgba(41,34,77,.06);
+
+}
+
+
+.close-button svg {
+
+    width:
+        19px;
+
+    height:
+        19px;
+
+    fill:
+        none;
+
+    stroke:
+        currentColor;
+
+    stroke-width:
+        1.7;
+
+    stroke-linecap:
+        round;
+
+}
+
+
+/* =========================================================
+   AUTOR NO PLAYER
+========================================================= */
+
+.player-author {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    padding-right:
+        40px;
+
+}
+
+
+.author-image {
+
+    position:
+        relative;
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    flex:
+        0 0 64px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    color:
+        #fff;
+
+    background:
+        var(--purple);
+
+    border-radius:
+        50%;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        24px;
+
+    font-weight:
+        700;
+
+}
+
+
+.author-image img {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+.player-info {
+
+    min-width:
+        0;
+
+}
+
+
+.now-playing-label {
+
+    margin-bottom:
+        3px;
+
+    color:
+        var(--orange);
+
+    font-size:
+        9px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .16em;
+
+}
+
+
+.player-info h2 {
+
+    margin:
+        0;
+
+    overflow:
+        hidden;
+
+    color:
+        var(--player-text);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        26px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.05;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.player-info p {
+
+    margin:
+        4px 0 0;
+
+    overflow:
+        hidden;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+/* =========================================================
+   PROGRESSO
+========================================================= */
+
+.progress-area {
+
+    margin-top:
+        20px;
+
+}
+
+
+.progress-area input[type="range"] {
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    appearance:
+        none;
+
+    -webkit-appearance:
+        none;
+
+    background:
+        rgba(41,34,77,.15);
+
+    border-radius:
+        999px;
+
+    outline:
+        none;
+
+}
+
+
+.progress-area input[type="range"]::-webkit-slider-thumb {
+
+    width:
+        15px;
+
+    height:
+        15px;
+
+    appearance:
+        none;
+
+    -webkit-appearance:
+        none;
+
+    background:
+        var(--blue);
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+}
+
+
+.progress-area input[type="range"]::-moz-range-thumb {
+
+    width:
+        15px;
+
+    height:
+        15px;
+
+    background:
+        var(--blue);
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+}
+
+
+.time-row {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    margin-top:
+        7px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.controls {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        28px;
+
+    margin-top:
+        10px;
+
+}
+
+
+.secondary-control {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    color:
+        var(--blue);
+
+    background:
+        transparent;
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.secondary-control:hover {
+
+    background:
+        rgba(41,43,120,.07);
+
+    transform:
+        scale(1.05);
+
+}
+
+
+.secondary-control svg {
+
+    width:
+        22px;
+
+    height:
+        22px;
+
+    fill:
+        none;
+
+    stroke:
+        currentColor;
+
+    stroke-width:
+        1.7;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
+}
+
+
+.play-button {
+
+    width:
+        72px;
+
+    height:
+        72px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    color:
+        #fff;
+
+    background:
+        var(--blue);
+
+    border:
+        0;
+
+    border-radius:
+        50%;
+
+    box-shadow:
+        0 10px 25px rgba(41,43,120,.22);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.play-button:hover {
+
+    transform:
+        scale(1.05);
+
+    background:
+        var(--purple);
+
+}
+
+
+.play-button:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+.play-button svg {
+
+    width:
+        24px;
+
+    height:
+        24px;
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
+   MENSAGEM DE ÁUDIO
+========================================================= */
+
+.audio-message {
+
+    min-height:
+        16px;
+
+    margin-top:
+        7px;
+
+    color:
+        var(--red);
+
+    font-size:
+        10px;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .home-content {
+
+        width:
+            88vw;
+
+        grid-template-columns:
+            1fr 340px;
+
+        gap:
+            35px;
+
+    }
+
+
+    .logo-button {
+
+        width:
+            340px;
+
+        height:
+            340px;
+
+    }
+
+
+    .hero-copy h1 {
+
+        font-size:
+            clamp(62px, 8vw, 90px);
+
+    }
+
+
+    .hero-copy p {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .library-header,
+    .poems-section {
+
+        width:
+            88vw;
+
+    }
+
+
+    .poem-list {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE — TABLET MENOR / CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .home-content {
+
+        width:
+            88vw;
+
+        min-height:
+            100vh;
+
+        grid-template-columns:
+            1fr;
+
+        grid-template-rows:
+            auto auto;
+
+        gap:
+            32px;
+
+        padding:
+            40px 0;
+
+        text-align:
+            center;
+
+    }
+
+
+    .hero-copy {
+
+        align-self:
+            end;
+
+    }
+
+
+    .hero-kicker {
+
+        margin-bottom:
+            15px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .hero-copy h1 {
+
+        font-size:
+            clamp(58px, 16vw, 82px);
+
+        line-height:
+            .84;
+
+    }
+
+
+    .hero-copy p {
+
+        max-width:
+            390px;
+
+        margin:
+            24px auto 0;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.55;
+
+    }
+
+
+    .logo-button {
+
+        width:
+            280px;
+
+        height:
+            280px;
+
+        margin:
+            0 auto;
+
+    }
+
+
+    .logo-hint {
+
+        bottom:
+            -30px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .library-header {
+
+        width:
+            88vw;
+
+        padding:
+            30px 0 24px;
+
+        grid-template-columns:
+            48px 1fr auto;
+
+        gap:
+            14px;
+
+    }
+
+
+    .back-button {
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+    }
+
+
+    .library-header h1 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .library-kicker {
+
+        font-size:
+            9px;
+
+    }
+
+
+    .library-count {
+
+        min-width:
+            44px;
+
+        height:
+            44px;
+
+        font-size:
+            11px;
+
+    }
+
+
+    .poems-section {
+
+        width:
+            88vw;
+
+        padding:
+            25px 0 150px;
+
+    }
+
+
+    .poem-card {
+
+        min-height:
+            125px;
+
+        grid-template-columns:
+            35px 1fr 45px;
+
+        gap:
+            12px;
+
+        padding:
+            20px;
+
+        border-radius:
+            18px;
+
+    }
+
+
+    .poem-number {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .poem-title {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .poem-author {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .poem-play {
+
+        width:
+            45px;
+
+        height:
+            45px;
+
+    }
+
+
+    .poem-play .play-svg {
+
+        width:
+            20px;
+
+        height:
+            20px;
+
+    }
+
+
+    .player {
+
+        width:
+            100%;
+
+    }
+
+
+    .player-inner {
+
+        padding:
+            18px 18px 20px;
+
+        border-radius:
+            22px 22px 0 0;
+
+    }
+
+
+    .player-author {
+
+        gap:
+            12px;
+
+    }
+
+
+    .author-image {
+
+        width:
+            55px;
+
+        height:
+            55px;
+
+        flex-basis:
+            55px;
+
+    }
+
+
+    .player-info h2 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .controls {
+
+        gap:
+            20px;
+
+    }
+
+
+    .play-button {
+
+        width:
+            64px;
+
+        height:
+            64px;
+
+    }
+
+
+    .play-button svg {
+
+        width:
+            22px;
+
+        height:
+            22px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ALTURA PEQUENA
+========================================================= */
+
+@media (max-height: 700px) {
+
+    .home-content {
+
+        padding-top:
+            25px;
+
+        padding-bottom:
+            25px;
+
+    }
+
+
+    .hero-copy h1 {
+
+        font-size:
+            clamp(50px, 10vh, 76px);
+
+    }
+
+
+    .hero-copy p {
+
+        margin-top:
+            18px;
+
+    }
+
+
+    .logo-button {
+
+        width:
+            250px;
+
+        height:
+            250px;
+
+    }
+
+
+    .logo-hint {
+
+        bottom:
+            -27px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            .01ms !important;
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
     }
 
 }
